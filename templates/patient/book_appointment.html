@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Book Appointment with Dr. {{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
+  <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Available Dates</h5>
+      {% if available_dates %}
+        <ul class="list-group mb-3">
+          {% for slot in available_dates %}
+            <li class="list-group-item">
+              <strong>{{ slot.date }}</strong>
+              <div class="small text-muted">{{ slot.start_time.strftime('%H:%M') }} - {{ slot.end_time.strftime('%H:%M') }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No availability found for the coming days.</p>
+      {% endif %}
+    </div>
+
+    <div class="col-md-6">
+      <h5>Booking Form</h5>
+      <form method="post" id="bookForm">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+          {{ form.appointment_date.label(class_='form-label') }}
+          {{ form.appointment_date(class_='form-control') }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.appointment_time.label(class_='form-label') }}
+          <select name="appointment_time" class="form-control" required>
+            <option value="">Select time</option>
+            {% for h in range(9, 18) %}
+              {% for m in [0, 30] %}
+                {% set val = '%02d:%02d'|format(h, m) %}
+                <option value="{{ val }}">{{ val }}</option>
+              {% endfor %}
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          {{ form.reason.label(class_='form-label') }}
+          {{ form.reason(class_='form-control') }}
+        </div>
+
+        <button class="btn btn-primary">Book Appointment</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

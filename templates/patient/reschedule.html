@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Reschedule Appointment{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Reschedule Appointment #{{ appointment.id }}</h2>
+  <form method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.appointment_date.label(class_='form-label') }}
+      {{ form.appointment_date(class_='form-control') }}
+    </div>
+    <div class="mb-3">
+      {{ form.appointment_time.label(class_='form-label') }}
+      {{ form.appointment_time(class_='form-control') }}
+    </div>
+    <div class="mb-3">
+      {{ form.reason.label(class_='form-label') }}
+      {{ form.reason(class_='form-control') }}
+    </div>
+    <button class="btn btn-primary">Reschedule</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelector('form').addEventListener('submit', function(e){
+  const dateField = document.querySelector('input[name="appointment_date"]');
+  const timeField = document.querySelector('input[name="appointment_time"]');
+  if (!dateField.value || !timeField.value){ e.preventDefault(); alert('Date and time are required.'); }
+  const selected = new Date(dateField.value);
+  const today = new Date(); today.setHours(0,0,0,0);
+  if (selected < today){ e.preventDefault(); alert('Cannot select a past date.'); }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctors - Admin{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Doctors</h2>
+
+    <form method="get" class="row g-2 mb-3">
+      <div class="col-auto">
+        <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="Search by name">
+      </div>
+      <div class="col-auto">
+        <input type="text" name="specialization" value="{{ specialization }}" class="form-control" placeholder="Specialization">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" type="submit">Search</button>
+        <a href="{{ url_for('admin_add_doctor') }}" class="btn btn-success">Add Doctor</a>
+      </div>
+    </form>
+
+    {% if doctors %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Department</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for doctor in doctors %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>Dr. {{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
+            <td>{{ doctor.specialization or '—' }}</td>
+            <td>{{ doctor.department.name if doctor.department else '—' }}</td>
+            <td>
+              <a href="{{ url_for('admin_edit_doctor', doctor_id=doctor.id) }}" class="btn btn-sm btn-primary">Edit</a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No doctors found.</p>
+    {% endif %}
+  </div>
+{% endblock %}

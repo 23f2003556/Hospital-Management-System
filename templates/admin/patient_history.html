@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}Patient History{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Patient History — {{ patient.user.first_name }} {{ patient.user.last_name }}</h2>
+    <div>
+      <a href="{{ url_for('admin_edit_patient', patient_id=patient.id) }}" class="btn btn-sm btn-warning">Edit Patient</a>
+      <a href="{{ url_for('admin_patients') }}" class="btn btn-sm btn-secondary">Back to Patients</a>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <h5>Contact</h5>
+      <p>
+        <strong>Email:</strong> {{ patient.user.email }}<br>
+        <strong>Phone:</strong> {{ patient.user.phone or '—' }}<br>
+        <strong>Address:</strong> {{ patient.user.address or '—' }}
+      </p>
+    </div>
+    <div class="col-md-4">
+      <h5>Demographics</h5>
+      <p>
+        <strong>DOB:</strong> {{ patient.date_of_birth or '—' }}<br>
+        <strong>Gender:</strong> {{ patient.gender or '—' }}<br>
+        <strong>Blood Group:</strong> {{ patient.blood_group or '—' }}
+      </p>
+    </div>
+    <div class="col-md-4">
+      <h5>Medical Summary</h5>
+      <p>{{ patient.medical_history or 'No medical history recorded.' }}</p>
+    </div>
+  </div>
+
+  <hr />
+  <h4>Medical Records</h4>
+  {% if medical_records %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Record</th>
+        <th>Recorded By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in medical_records %}
+      <tr>
+        <td>{{ r.recorded_date }}</td>
+        <td>{{ r.notes or r.summary or '—' }}</td>
+        <td>{{ r.clinician_name or 'System' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="text-muted">No medical records found.</p>
+  {% endif %}
+
+  <hr />
+  <h4>Treatments</h4>
+  {% if treatments %}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Doctor</th>
+        <th>Diagnosis</th>
+        <th>Prescription / Medicines</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in treatments %}
+      <tr>
+        <td>{{ t.created_at.strftime('%Y-%m-%d') if t.created_at else '—' }}</td>
+        <td>Dr. {{ t.appointment.doctor.user.first_name }} {{ t.appointment.doctor.user.last_name }}</td>
+        <td>{{ t.diagnosis or '—' }}</td>
+        <td>
+          {% if t.prescription %}
+            <strong>Presc:</strong> {{ t.prescription }}<br>
+          {% endif %}
+          {% if t.medicines %}
+            <strong>Medicines:</strong> {{ t.medicines }}
+          {% endif %}
+        </td>
+        <td>{{ t.notes or '—' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="text-muted">No treatments recorded.</p>
+  {% endif %}
+
+  <hr />
+  <h4>Appointments</h4>
+  {% if appointments %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Doctor</th>
+        <th>Status</th>
+        <th>Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in appointments %}
+      <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.appointment_date }}</td>
+        <td>{{ a.appointment_time }}</td>
+        <td>Dr. {{ a.doctor.user.first_name }} {{ a.doctor.user.last_name }}</td>
+        <td>{{ a.status }}</td>
+        <td>{{ a.reason or '—' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="text-muted">No appointments found for this patient.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

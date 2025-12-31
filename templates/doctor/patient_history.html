@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Patient History{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Medical History: {{ patient.user.first_name }} {{ patient.user.last_name }}</h2>
+  <h4 class="mt-3">Medical Records</h4>
+  {% if medical_records %}
+    <ul class="list-group">
+      {% for r in medical_records %}
+        <li class="list-group-item">
+          <strong>{{ r.record_type }} - {{ r.title }}</strong>
+          <div class="small text-muted">{{ r.recorded_date }}</div>
+          <p>{{ r.description }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No medical records found.</p>
+  {% endif %}
+
+  <h4 class="mt-3">Treatments</h4>
+  {% if treatments %}
+    <ul class="list-group">
+      {% for t in treatments %}
+        <li class="list-group-item">
+          <strong>Appointment #{{ t.appointment_id }} - {{ t.diagnosis }}</strong>
+          <div class="small text-muted">{{ t.created_at.strftime('%Y-%m-%d') }}</div>
+          <p>{{ t.prescription }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No treatments recorded.</p>
+  {% endif %}
+
+  <h4 class="mt-3">Appointments</h4>
+  {% if appointments %}
+    <ul class="list-group">
+      {% for a in appointments %}
+        <li class="list-group-item">{{ a.appointment_date }} {{ a.appointment_time.strftime('%H:%M') }} - Dr. {{ a.doctor.user.first_name }} {{ a.doctor.user.last_name }} ({{ a.status }})</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No appointments found.</p>
+  {% endif %}
+</div>
+{% endblock %}

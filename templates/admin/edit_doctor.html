@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Doctor{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Edit Doctor</h2>
+
+    <form method="post">
+      <div class="mb-3">
+        <label class="form-label">Specialization</label>
+        <input type="text" name="specialization" class="form-control" value="{{ doctor.specialization }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Qualification</label>
+        <input type="text" name="qualification" class="form-control" value="{{ doctor.qualification }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Experience (years)</label>
+        <input type="number" name="experience_years" class="form-control" value="{{ doctor.experience_years or 0 }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Consultation Fee</label>
+        <input type="text" name="consultation_fee" class="form-control" value="{{ doctor.consultation_fee or '' }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Bio</label>
+        <textarea name="bio" class="form-control">{{ doctor.bio or '' }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="{{ url_for('admin_doctors') }}" class="btn btn-secondary">Back</a>
+    </form>
+  </div>
+{% endblock %}

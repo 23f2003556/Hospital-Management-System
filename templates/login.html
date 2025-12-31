@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Login - HMS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="col-md-5 col-lg-4">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header justify-content-center bg-white border-0 mt-4">
+                <h3 class="text-center font-weight-light my-2 text-primary">Login</h3>
+            </div>
+            <div class="card-body px-5 pb-5">
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-floating mb-3">
+                        {{ form.email(class="form-control", placeholder="name@example.com", id="emailInput") }}
+                        <label for="emailInput">Email address</label>
+                        {% if form.email.errors %}
+                        <div class="text-danger small mt-1">
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        {{ form.password(class="form-control", placeholder="Password", id="passwordInput") }}
+                        <label for="passwordInput">Password</label>
+                        {% if form.password.errors %}
+                        <div class="text-danger small mt-1">
+                            {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-check mb-3">
+                        {{ form.remember(class="form-check-input", id="rememberCheck") }}
+                        <label class="form-check-label text-muted" for="rememberCheck">Remember me</label>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center py-3 border-0 bg-light rounded-bottom">
+                <div class="small"><a href="{{ url_for('register') }}" class="text-decoration-none">Need an account?
+                        Sign up!</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}Manage Availability{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Manage Availability (Next 7 days)</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Slot</th>
+        <th>Available</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in days %}
+        {% set slot = slots_map.get(d) %}
+        <tr>
+          <td>{{ d }}</td>
+          <td>
+            {% if slot %}
+              {{ slot.start_time.strftime('%H:%M') }} - {{ slot.end_time.strftime('%H:%M') }}
+            {% else %}
+              Not set
+            {% endif %}
+          </td>
+          <td>
+            {% if slot and slot.is_available %}
+              Yes
+            {% else %}
+              No
+            {% endif %}
+          </td>
+          <td>
+            {% if slot %}
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-primary edit-slot"
+                data-date="{{ d }}"
+                data-start="{{ slot.start_time.strftime('%H:%M') }}"
+                data-end="{{ slot.end_time.strftime('%H:%M') }}"
+                data-available="{{ '1' if slot.is_available else '0' }}">
+                Edit
+              </button>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4 class="mt-4">Add/Update Slot</h4>
+  <form method="post" id="availabilityForm">
+    
+    <div class="row">
+      <div class="col-md-3">
+        <label class="form-label">Date</label>
+        <input type="date" name="date" class="form-control" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Start Time</label>
+        <input type="time" name="start_time" class="form-control" step="1800" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">End Time</label>
+        <input type="time" name="end_time" class="form-control" step="1800" required>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="is_available" id="is_available" value="1" checked>
+          <label class="form-check-label" for="is_available">Available</label>
+        </div>
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const availabilityForm = document.getElementById('availabilityForm');
+if (availabilityForm) {
+  // Basic client-side validation
+  availabilityForm.addEventListener('submit', function(e){
+    const date = this.querySelector('input[name="date"]').value;
+    const start = this.querySelector('input[name="start_time"]').value;
+    const end = this.querySelector('input[name="end_time"]').value;
+    if (!date || !start || !end){ e.preventDefault(); alert('Date and start/end times are required.'); }
+    if (start >= end){ e.preventDefault(); alert('Start time must be before end time.'); }
+  });
+}
+
+// Prefill form when clicking Edit on an existing slot
+document.querySelectorAll('.edit-slot').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    const form = document.getElementById('availabilityForm');
+    if (!form) return;
+
+    const date = this.getAttribute('data-date');
+    const start = this.getAttribute('data-start');
+    const end = this.getAttribute('data-end');
+    const available = this.getAttribute('data-available') === '1';
+
+    const dateInput = form.querySelector('input[name="date"]');
+    const startInput = form.querySelector('input[name="start_time"]');
+    const endInput = form.querySelector('input[name="end_time"]');
+    const availInput = form.querySelector('input[name="is_available"]');
+
+    if (dateInput) dateInput.value = date;
+    if (startInput) startInput.value = start;
+    if (endInput) endInput.value = end;
+    if (availInput) availInput.checked = available;
+
+    // Scroll to form for convenience
+    form.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+{% endblock %}

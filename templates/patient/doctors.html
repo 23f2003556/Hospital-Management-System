@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Find Doctors{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Find Doctors</h2>
+  <form method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+      <input type="text" name="q" class="form-control" placeholder="Search by name or specialization" value="{{ q }}">
+    </div>
+    <div class="col-auto">
+      <select name="department" class="form-select">
+        <option value="">All Departments</option>
+        {% for d in departments %}
+        <option value="{{ d.id }}" {% if dept_id and dept_id|int == d.id %}selected{% endif %}>{{ d.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary">Search</button>
+    </div>
+  </form>
+
+  <div class="row">
+    {% for doc in doctors %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Dr. {{ doc.user.first_name }} {{ doc.user.last_name }}</h5>
+          <p class="card-text">{{ doc.specialization }} — {{ doc.qualification }}</p>
+          <a href="{{ url_for('patient_book_appointment', doctor_id=doc.id) }}" class="btn btn-primary btn-sm">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

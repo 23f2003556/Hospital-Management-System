@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Update Patient History{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Update Patient History</h2>
+  <p><strong>Patient:</strong> {{ patient.user.first_name }} {{ patient.user.last_name }}</p>
+  <p><strong>Department:</strong> {{ appointment.doctor.department.name if appointment.doctor and appointment.doctor.department else '—' }}</p>
+
+  <form method="post">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Visit Type</label>
+        <input type="text" name="visit_type" class="form-control" placeholder="e.g., Follow-up, New Consult">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Test Done</label>
+        <input type="text" name="test_done" class="form-control" placeholder="e.g., CBC, X-Ray">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Diagnosis</label>
+      <textarea name="diagnosis" class="form-control" rows="2">{{ appointment.treatment.diagnosis if appointment.treatment }}</textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Prescription</label>
+        <textarea name="prescription" class="form-control" rows="2">{{ appointment.treatment.prescription if appointment.treatment }}</textarea>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Medicines</label>
+        <textarea name="medicines" class="form-control" rows="2">{{ appointment.treatment.medicines if appointment.treatment }}</textarea>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Additional Notes</label>
+      <textarea name="notes" class="form-control" rows="2">{{ appointment.treatment.notes if appointment.treatment }}</textarea>
+    </div>
+
+    <hr />
+    <h5>Add Medical Record / Test Result (optional)</h5>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Record Type</label>
+        <input type="text" name="record_type" class="form-control" placeholder="e.g., Lab Report">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="record_title" class="form-control" placeholder="e.g., CBC Result">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Description</label>
+        <input type="text" name="record_description" class="form-control" placeholder="Short description">
+      </div>
+    </div>
+
+    <button class="btn btn-success">Save</button>
+  </form>
+</div>
+{% endblock %}
