@@ -39,41 +39,6 @@ A role-based hospital management web application for handling patient registrati
 - Update own profile (contact details, DOB, gender, blood group, allergies, etc.)
 - View full personal history: appointments, treatments, and medical records
 
-## Installation & Setup
-
-1. **Clone repository**
-2. **Create virtual environment**
-   ```bash
-   python -m venv .venv
-   ```
-3. **Activate environment**  
-   - Windows: `\.venv\\Scripts\\activate`  
-   - macOS/Linux: `source .venv/bin/activate`
-4. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-6. **Initialize the database**
-   ```bash
-   # Step A: Create Base Database (Admin + Departments)
-   python db_init.py --recreate
-
-   # Step B: Add Sample Doctors (Dr. Rajeev & Dr. Priya)
-   python scripts/seed_minimal.py
-   ```
-   
-   `seed_minimal.py` will create:
-   - Roles (Admin, Doctor, Patient)
-   - One admin user
-   - Departments
-   - 2 Doctors (Dr. Rajeev, Dr. Priya)
-   - Doctor availability slots
-6. **Run the application**
-   ```bash
-   python app.py
-   ```
-7. **Access the app**  
-   Open: `http://127.0.0.1:5001/`
 
 ## Default Login
 
