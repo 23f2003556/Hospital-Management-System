@@ -37,7 +37,11 @@ app.register_blueprint(api_bp)
 # --------------------- User Loader ---------------------
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    try:
+        return User.query.get(int(user_id))
+    except Exception:
+        db.session.rollback()
+        return None
 
 
 # --------------------- Role-Based Decorator ---------------------
@@ -109,17 +113,28 @@ class AppointmentForm(FlaskForm):
 @app.route('/setup-db')
 def setup_db():
     try:
+        # Check if we are using SQLite or Postgres
+        is_postgres = app.config['SQLALCHEMY_DATABASE_URI'].startswith('postgresql')
+        print(f"Initializing database. Connection type: {'PostgreSQL' if is_postgres else 'SQLite'}")
+        
         db.create_all()
+        
         # Also create initial roles if they don't exist
         from models import Role
         roles = ['Admin', 'Doctor', 'Patient']
         for r_name in roles:
-            if not Role.query.filter_by(name=r_name).first():
+            try:
+                if not Role.query.filter_by(name=r_name).first():
+                    db.session.add(Role(name=r_name))
+            except Exception:
+                db.session.rollback()
                 db.session.add(Role(name=r_name))
+                
         db.session.commit()
         return "Database tables and roles created successfully! You can now register or login."
     except Exception as e:
-        return f"Error creating database: {str(e)}"
+        db.session.rollback()
+        return f"Error creating database: {str(e)} <br><br> Check your DATABASE_URL in Vercel settings."
 
 # --------------------- Core Routes ---------------------
 @app.route('/')
