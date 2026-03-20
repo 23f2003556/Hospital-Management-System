@@ -665,18 +665,65 @@
         /* Hero Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--subtle-text);
-            font-size: 0.9rem;
-            font-weight: 600;
-            animation: bounce 2s infinite;
-            opacity: 0.8;
+            gap: 1.2rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+
+        .scroll-indicator:hover {
+            color: var(--accent-blue);
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .scroll-mouse {
+            width: 28px;
+            height: 48px;
+            border: 2px solid rgba(148, 163, 184, 0.4);
+            border-radius: 16px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .scroll-indicator:hover .scroll-mouse {
+            border-color: var(--accent-blue);
+        }
+
+        .scroll-wheel {
+            width: 4px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll-wheel-anim 2s infinite ease-in-out;
+        }
+
+        @keyframes scroll-wheel-anim {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            20% { opacity: 1; }
+            80% { opacity: 0; transform: translateX(-50%) translateY(18px); }
+            100% { opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
@@ -710,33 +757,6 @@
             pointer-events: none;
         }
 
-        /* Premium Scroll Mouse */
-        .scroll-mouse {
-            width: 26px;
-            height: 44px;
-            border: 2px solid rgba(148, 163, 184, 0.5);
-            border-radius: 14px;
-            position: relative;
-            margin-top: 1.5rem;
-            display: inline-block;
-        }
-        .scroll-wheel {
-            width: 4px;
-            height: 8px;
-            background: var(--accent-blue);
-            border-radius: 2px;
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scroll-anim 2s infinite ease-in-out;
-        }
-        @keyframes scroll-anim {
-            0% { opacity: 0; transform: translateX(-50%) translateY(0); }
-            20% { opacity: 1; }
-            80% { opacity: 0; transform: translateX(-50%) translateY(14px); }
-            100% { opacity: 0; }
-        }
 
     </style>
 </head>
@@ -765,9 +785,15 @@
         <div class="platform-name">hospital+</div>
         <h1>Healthcare, <span class="marker-underline active">Fully Reimagined.</span></h1>
         
+        <a href="#problem" class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </a>
     </section>
 
-    <section class="problem-section">
+    <section class="problem-section" id="problem">
         <div class="section-header reveal">
             <h2>The Friction <span class="marker-underline marker-red active">Crisis.</span></h2>
             <p>Impact analysis for a premier 500-bed Indian Multespecialty Hospital.</p>
