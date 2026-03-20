@@ -131,7 +131,27 @@ def setup_db():
                 db.session.add(Role(name=r_name))
                 
         db.session.commit()
-        return "Database tables and roles created successfully! You can now register or login."
+        
+        # Create initial admin user if it doesn't exist
+        from models import User, Admin
+        admin_email = 'jannu@gmail.com'
+        if not User.query.filter_by(email=admin_email).first():
+            admin_user = User(
+                email=admin_email,
+                password=generate_password_hash('admin123'),
+                first_name='Admin',
+                last_name='User',
+                is_active=True
+            )
+            admin_user.roles.append(Role.query.filter_by(name='Admin').first())
+            db.session.add(admin_user)
+            db.session.flush()
+            
+            admin_profile = Admin(user_id=admin_user.id, is_super_admin=True)
+            db.session.add(admin_profile)
+            db.session.commit()
+            
+        return "Database tables, roles, and Admin user (jannu@gmail.com) created successfully! Use 'admin123' to login."
     except Exception as e:
         db.session.rollback()
         return f"Error creating database: {str(e)} <br><br> Check your DATABASE_URL in Vercel settings."
