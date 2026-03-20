@@ -181,9 +181,7 @@
             color: #475569;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: -1rem;
-            position: relative;
-            z-index: 11;
+            margin-bottom: 2rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             animation: fadeInDown 1s ease forwards;
@@ -194,11 +192,8 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            margin-top: -3.5rem;
             letter-spacing: -2px;
             color: #0f172a;
-            position: relative;
-            z-index: 10;
             animation: fadeInUp 1s ease 0.2s forwards;
             opacity: 0;
         }
@@ -708,26 +703,6 @@
             100% { opacity: 0; }
         }
 
-        /* Hero Building Image */
-        .hero-building-container {
-            margin: 0;
-            perspective: 1000px;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .hero-building-img {
-            max-width: 480px;
-            width: 90%;
-            height: auto;
-            filter: drop-shadow(0 40px 80px rgba(59, 130, 246, 0.1));
-            animation: float-hero 6s ease-in-out infinite;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        @keyframes float-hero {
-            0%, 100% { transform: translateY(0) rotateX(2deg); }
-            50% { transform: translateY(-20px) rotateX(-2deg); }
-        }
     </style>
 </head>
 <body>
@@ -752,9 +727,6 @@
 
     <section class="hero">
         <div class="pill">The Future of Hospital Administration</div>
-        <div class="hero-building-container reveal">
-            <img src="{{ url_for('static', filename='hospital_hero.png') }}" alt="Medical Facility" class="hero-building-img">
-        </div>
         <h1>Healthcare,<br><span class="marker-underline active">Fully Reimagined.</span></h1>
         <p>A unified, AI-ready ecosystem bridging the gap between patients, doctors, and data. Experience unprecedented speed, military-grade security, and breathtaking aesthetics in medical management.</p>
         
