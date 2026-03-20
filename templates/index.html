@@ -306,13 +306,23 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         }
 
-        .stat-number {
-            font-size: 4rem;
-            font-weight: 800;
+        .stat-number.loss {
+            background: linear-gradient(135deg, #f43f5e, #fb923c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-number.gain {
             background: linear-gradient(135deg, #10b981, #3b82f6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
             line-height: 1;
         }
@@ -765,7 +775,7 @@
 
         <div class="stats-grid">
             <div class="stat-card reveal tilt">
-                <div class="stat-number" data-target="15000">0</div>
+                <div class="stat-number loss" data-target="15000">0</div>
                 <span style="font-size: 1.5rem; color: #f43f5e; font-weight: 800; vertical-align: top;">+</span>
                 <h3>Physical Files Daily</h3>
                 <p>The crushing volume of paper records managed manually, leading to systematic slowdowns in patient care.</p>
@@ -773,7 +783,7 @@
             </div>
             
             <div class="stat-card reveal tilt" style="transition-delay: 0.1s;">
-                <div class="stat-number" data-target="22">0</div>
+                <div class="stat-number loss" data-target="22">0</div>
                 <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">Mins</span>
                 <h3>Emergency Retrieval</h3>
                 <p>Average delay in accessing critical patient history during life-threatening emergency admissions.</p>
@@ -782,7 +792,7 @@
 
             <div class="stat-card reveal tilt" style="transition-delay: 0.2s;">
                 <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">₹</span>
-                <div class="stat-number" style="display:inline-block;" data-target="12">0</div>
+                <div class="stat-number loss" style="display:inline-block;" data-target="12">0</div>
                 <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">L</span>
                 <h3>Monthly Leakage</h3>
                 <p>Calculated loss due to diagnostic duplication, missing billing entries, and resource misallocation.</p>
@@ -919,7 +929,7 @@
         <div class="impact-grid">
             <div class="impact-card reveal stat-card tilt">
                 <div class="impact-value impact-blue">
-                    <span class="stat-number" data-target="3500">0</span>
+                    <span class="stat-number gain" data-target="3500">0</span>
                     <span style="font-size: 1.5rem; margin-bottom: 1rem;">+</span>
                 </div>
                 <div class="impact-label">Weekly Hours Reclaimed</div>
@@ -929,7 +939,7 @@
 
             <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.1s;">
                 <div class="impact-value impact-emerald">
-                    <span class="stat-number" data-target="98">0</span>
+                    <span class="stat-number gain" data-target="98">0</span>
                     <span style="font-size: 2rem; margin-bottom: 1rem;">%</span>
                 </div>
                 <div class="impact-label">Digital Adoption</div>
@@ -940,7 +950,7 @@
             <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.2s;">
                 <div class="impact-value impact-purple">
                     <span style="font-size: 2rem; margin-bottom: 1rem;">₹</span>
-                    <span class="stat-number" data-target="1.8">0.0</span>
+                    <span class="stat-number gain" data-target="1.8">0.0</span>
                     <span style="font-size: 2rem; margin-bottom: 1rem;">Cr</span>
                 </div>
                 <div class="impact-label">Annual Recovery</div>
