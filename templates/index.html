@@ -702,6 +702,24 @@
             80% { opacity: 0; transform: translateX(-50%) translateY(14px); }
             100% { opacity: 0; }
         }
+
+        /* Hero Building Image */
+        .hero-building-container {
+            margin: 2rem 0;
+            perspective: 1000px;
+        }
+        .hero-building-img {
+            max-width: 420px;
+            width: 85%;
+            height: auto;
+            filter: drop-shadow(0 30px 60px rgba(59, 130, 246, 0.2));
+            animation: float-hero 6s ease-in-out infinite;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        @keyframes float-hero {
+            0%, 100% { transform: translateY(0) rotateX(2deg); }
+            50% { transform: translateY(-20px) rotateX(-2deg); }
+        }
     </style>
 </head>
 <body>
@@ -726,6 +744,9 @@
 
     <section class="hero">
         <div class="pill">The Future of Hospital Administration</div>
+        <div class="hero-building-container reveal">
+            <img src="{{ url_for('static', filename='hospital_hero.png') }}" alt="Medical Facility" class="hero-building-img">
+        </div>
         <h1>Healthcare,<br><span class="marker-underline active">Fully Reimagined.</span></h1>
         <p>A unified, AI-ready ecosystem bridging the gap between patients, doctors, and data. Experience unprecedented speed, military-grade security, and breathtaking aesthetics in medical management.</p>
         
