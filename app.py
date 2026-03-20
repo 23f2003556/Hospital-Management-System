@@ -105,6 +105,22 @@ class AppointmentForm(FlaskForm):
             raise ValidationError('Cannot book appointments in the past')
 
 
+# --------------------- Setup Route (Run once on Vercel) ---------------------
+@app.route('/setup-db')
+def setup_db():
+    try:
+        db.create_all()
+        # Also create initial roles if they don't exist
+        from models import Role
+        roles = ['Admin', 'Doctor', 'Patient']
+        for r_name in roles:
+            if not Role.query.filter_by(name=r_name).first():
+                db.session.add(Role(name=r_name))
+        db.session.commit()
+        return "Database tables and roles created successfully! You can now register or login."
+    except Exception as e:
+        return f"Error creating database: {str(e)}"
+
 # --------------------- Core Routes ---------------------
 @app.route('/')
 def index():
