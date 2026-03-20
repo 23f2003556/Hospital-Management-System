@@ -150,6 +150,14 @@ def setup_db():
             admin_profile = Admin(user_id=admin_user.id, is_super_admin=True)
             db.session.add(admin_profile)
             db.session.commit()
+        
+        # Seed default departments
+        from models import Department
+        depts = ['General medicine', 'Cardiology', 'Neurology', 'Pediatrics', 'Orthopedics']
+        for d_name in depts:
+            if not Department.query.filter_by(name=d_name).first():
+                db.session.add(Department(name=d_name, description=f"{d_name} department"))
+        db.session.commit()
             
         return "Database tables, roles, and Admin user (jannu@gmail.com) created successfully! Use 'admin123' to login."
     except Exception as e:
@@ -340,66 +348,76 @@ def admin_add_doctor():
             flash('Email already exists!', 'danger')
             return redirect(url_for('admin_add_doctor'))
 
-        hashed_password = generate_password_hash(password)
-        user = User(
-            email=email,
-            password=hashed_password,
-            first_name=first_name,
-            last_name=last_name,
-            phone=phone
-        )
-        doctor_role = Role.query.filter_by(name='Doctor').first()
-        user.roles.append(doctor_role)
-        db.session.add(user)
-        db.session.flush()
-
-        doctor = Doctor(
-            user_id=user.id,
-            department_id=department_id,
-            specialization=specialization,
-            license_number=f"DOC-{user.id:04d}",
-            qualification="MBBS",
-            experience_years=0
-        )
-        db.session.add(doctor)
-        db.session.flush()
-
-        # Seed default availability for the newly created doctor for the next 7 days
-        today = date.today()
-        for offset in range(7):
-            slot_date = today + timedelta(days=offset)
-            morning_start = datetime.strptime('09:00', '%H:%M').time()
-            morning_end = datetime.strptime('13:00', '%H:%M').time()
-            afternoon_start = datetime.strptime('15:00', '%H:%M').time()
-            afternoon_end = datetime.strptime('18:00', '%H:%M').time()
-
-            morning_slot = DoctorAvailability(
-                doctor_id=doctor.id,
-                date=slot_date,
-                day_of_week=slot_date.strftime('%A'),
-                start_time=morning_start,
-                end_time=morning_end,
-                slot_duration=30,
-                is_available=True,
-                is_recurring=False
+        try:
+            hashed_password = generate_password_hash(password)
+            user = User(
+                email=email,
+                password=hashed_password,
+                first_name=first_name,
+                last_name=last_name,
+                phone=phone
             )
-            afternoon_slot = DoctorAvailability(
-                doctor_id=doctor.id,
-                date=slot_date,
-                day_of_week=slot_date.strftime('%A'),
-                start_time=afternoon_start,
-                end_time=afternoon_end,
-                slot_duration=30,
-                is_available=True,
-                is_recurring=False
+            doctor_role = Role.query.filter_by(name='Doctor').first()
+            if not doctor_role:
+                doctor_role = Role(name='Doctor')
+                db.session.add(doctor_role)
+                db.session.flush()
+
+            user.roles.append(doctor_role)
+            db.session.add(user)
+            db.session.flush()
+
+            doctor = Doctor(
+                user_id=user.id,
+                department_id=int(department_id),
+                specialization=specialization,
+                license_number=f"DOC-{user.id:04d}",
+                qualification="MBBS",
+                experience_years=0
             )
-            db.session.add(morning_slot)
-            db.session.add(afternoon_slot)
+            db.session.add(doctor)
+            db.session.flush()
 
-        db.session.commit()
+            # Seed default availability for the next 7 days
+            today = date.today()
+            for offset in range(7):
+                slot_date = today + timedelta(days=offset)
+                morning_start = datetime.strptime('09:00', '%H:%M').time()
+                morning_end = datetime.strptime('13:00', '%H:%M').time()
+                afternoon_start = datetime.strptime('15:00', '%H:%M').time()
+                afternoon_end = datetime.strptime('18:00', '%H:%M').time()
 
-        flash(f'Doctor {first_name} {last_name} added successfully!', 'success')
-        return redirect(url_for('admin_doctors'))
+                morning_slot = DoctorAvailability(
+                    doctor_id=doctor.id,
+                    date=slot_date,
+                    day_of_week=slot_date.strftime('%A'),
+                    start_time=morning_start,
+                    end_time=morning_end,
+                    slot_duration=30,
+                    is_available=True,
+                    is_recurring=False
+                )
+                afternoon_slot = DoctorAvailability(
+                    doctor_id=doctor.id,
+                    date=slot_date,
+                    day_of_week=slot_date.strftime('%A'),
+                    start_time=afternoon_start,
+                    end_time=afternoon_end,
+                    slot_duration=30,
+                    is_available=True,
+                    is_recurring=False
+                )
+                db.session.add(morning_slot)
+                db.session.add(afternoon_slot)
+
+            db.session.commit()
+            flash(f'Doctor {first_name} {last_name} added successfully!', 'success')
+            return redirect(url_for('admin_doctors'))
+
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error creating doctor: {str(e)}', 'danger')
+            return redirect(url_for('admin_add_doctor'))
 
     departments = Department.query.all()
     return render_template('admin/add_doctor.html', departments=departments)
