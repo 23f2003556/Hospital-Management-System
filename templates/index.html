@@ -188,11 +188,11 @@
         }
 
         .platform-name {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
             color: #3b82f6;
-            letter-spacing: -0.5px;
+            letter-spacing: -3px;
             display: inline-block;
             background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
             -webkit-background-clip: text;
@@ -211,12 +211,13 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-            color: #0f172a;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            text-transform: uppercase;
             animation: fadeInUp 1s ease 0.2s forwards;
             opacity: 0;
         }
@@ -762,8 +763,7 @@
     <section class="hero">
         <div class="pill">The Future of Hospital Administration</div>
         <div class="platform-name">hospital+</div>
-        <h1>Healthcare,<br><span class="marker-underline active">Fully Reimagined.</span></h1>
-        <p>A unified, AI-ready ecosystem bridging the gap between patients, doctors, and data. Experience unprecedented speed, military-grade security, and breathtaking aesthetics in medical management.</p>
+        <h1>Healthcare, <span class="marker-underline active">Fully Reimagined.</span></h1>
         
     </section>
 
