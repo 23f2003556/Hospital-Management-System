@@ -1,6 +1,10 @@
-{% extends "base.html" %} {% block title %}Admin Dashboard{% endblock %} {% block content %}
-<h2>Admin Dashboard</h2>
-<p>Welcome, {{ current_user.first_name }}!</p>
+{% extends "base.html" %} {% block title %}Patient Dashboard{% endblock %} {% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-light text-muted">Patient <span class="fw-bold text-primary">Dashboard</span></h2>
+        <p>Welcome back, <span class="fw-bold">{{ current_user.first_name }}</span>!</p>
+    </div>
+</div>
 
 <div class="row mt-4">
     <div class="col-md-3">
@@ -52,31 +56,37 @@
 
 <div class="row mt-4">
     <div class="col-md-12">
-        <h4>Recent Appointments</h4>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Patient</th>
-                    <th>Doctor</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for appointment in recent_appointments %}
-                <tr>
-                    <td>{{ appointment.id }}</td>
-                    <td>{{ appointment.patient.user.first_name }} {{ appointment.patient.user.last_name }}</td>
-                    <td>{{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}</td>
-                    <td>{{ appointment.appointment_date }}</td>
-                    <td>{{ appointment.appointment_time }}</td>
-                    <td><span class="badge bg-primary">{{ appointment.status }}</span></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 text-primary fw-bold">Recent Appointments</h5>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in recent_appointments %}
+                        <tr>
+                            <td>#{{ appointment.id }}</td>
+                            <td>{{ appointment.patient.user.first_name }} {{ appointment.patient.user.last_name }}</td>
+                            <td>Dr. {{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}</td>
+                            <td>{{ appointment.appointment_date }}</td>
+                            <td>{{ appointment.appointment_time }}</td>
+                            <td><span class="badge rounded-pill bg-primary">{{ appointment.status }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

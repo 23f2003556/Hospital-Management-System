@@ -2,11 +2,11 @@
 {% block title %}Patient History{% endblock %}
 {% block content %}
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center">
-    <h2>Patient History — {{ patient.user.first_name }} {{ patient.user.last_name }}</h2>
-    <div>
-      <a href="{{ url_for('admin_edit_patient', patient_id=patient.id) }}" class="btn btn-sm btn-warning">Edit Patient</a>
-      <a href="{{ url_for('admin_patients') }}" class="btn btn-sm btn-secondary">Back to Patients</a>
+  <div class="d-md-flex justify-content-between align-items-center">
+    <h2 class="h3">Patient History — <span class="text-primary">{{ patient.user.first_name }} {{ patient.user.last_name }}</span></h2>
+    <div class="mt-2 mt-md-0">
+      <a href="{{ url_for('admin_edit_patient', patient_id=patient.id) }}" class="btn btn-sm btn-warning rounded-pill">Edit Patient</a>
+      <a href="{{ url_for('admin_patients') }}" class="btn btn-sm btn-secondary rounded-pill">Back</a>
     </div>
   </div>
 
@@ -36,24 +36,26 @@
   <hr />
   <h4>Medical Records</h4>
   {% if medical_records %}
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Record</th>
-        <th>Recorded By</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for r in medical_records %}
-      <tr>
-        <td>{{ r.recorded_date }}</td>
-        <td>{{ r.notes or r.summary or '—' }}</td>
-        <td>{{ r.clinician_name or 'System' }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Record</th>
+          <th>Recorded By</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in medical_records %}
+        <tr>
+          <td class="text-nowrap">{{ r.recorded_date }}</td>
+          <td>{{ r.notes or r.summary or '—' }}</td>
+          <td>{{ r.clinician_name or 'System' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   {% else %}
   <p class="text-muted">No medical records found.</p>
   {% endif %}
@@ -61,35 +63,37 @@
   <hr />
   <h4>Treatments</h4>
   {% if treatments %}
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Doctor</th>
-        <th>Diagnosis</th>
-        <th>Prescription / Medicines</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for t in treatments %}
-      <tr>
-        <td>{{ t.created_at.strftime('%Y-%m-%d') if t.created_at else '—' }}</td>
-        <td>Dr. {{ t.appointment.doctor.user.first_name }} {{ t.appointment.doctor.user.last_name }}</td>
-        <td>{{ t.diagnosis or '—' }}</td>
-        <td>
-          {% if t.prescription %}
-            <strong>Presc:</strong> {{ t.prescription }}<br>
-          {% endif %}
-          {% if t.medicines %}
-            <strong>Medicines:</strong> {{ t.medicines }}
-          {% endif %}
-        </td>
-        <td>{{ t.notes or '—' }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="bg-light">
+        <tr>
+          <th>Date</th>
+          <th>Doctor</th>
+          <th>Diagnosis</th>
+          <th>Prescription / Medicines</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in treatments %}
+        <tr>
+          <td class="text-nowrap">{{ t.created_at.strftime('%Y-%m-%d') if t.created_at else '—' }}</td>
+          <td>Dr. {{ t.appointment.doctor.user.first_name }} {{ t.appointment.doctor.user.last_name }}</td>
+          <td>{{ t.diagnosis or '—' }}</td>
+          <td>
+            {% if t.prescription %}
+              <div class="small"><strong>Presc:</strong> {{ t.prescription }}</div>
+            {% endif %}
+            {% if t.medicines %}
+              <div class="small"><strong>Medicines:</strong> {{ t.medicines }}</div>
+            {% endif %}
+          </td>
+          <td>{{ t.notes or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   {% else %}
   <p class="text-muted">No treatments recorded.</p>
   {% endif %}
@@ -97,30 +101,36 @@
   <hr />
   <h4>Appointments</h4>
   {% if appointments %}
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Doctor</th>
-        <th>Status</th>
-        <th>Reason</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for a in appointments %}
-      <tr>
-        <td>{{ a.id }}</td>
-        <td>{{ a.appointment_date }}</td>
-        <td>{{ a.appointment_time }}</td>
-        <td>Dr. {{ a.doctor.user.first_name }} {{ a.doctor.user.last_name }}</td>
-        <td>{{ a.status }}</td>
-        <td>{{ a.reason or '—' }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Doctor</th>
+          <th>Status</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in appointments %}
+        <tr>
+          <td>#{{ a.id }}</td>
+          <td class="text-nowrap">{{ a.appointment_date }}</td>
+          <td class="text-nowrap">{{ a.appointment_time }}</td>
+          <td>Dr. {{ a.doctor.user.first_name }} {{ a.doctor.user.last_name }}</td>
+          <td>
+            <span class="badge rounded-pill bg-{{ 'success' if a.status == 'Confirmed' else 'warning' if a.status == 'Pending' else 'secondary' }}">
+              {{ a.status }}
+            </span>
+          </td>
+          <td>{{ a.reason or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   {% else %}
   <p class="text-muted">No appointments found for this patient.</p>
   {% endif %}

@@ -209,7 +209,6 @@ h6 {
 }
 
 /* Dashboard Specifics */
-/* Dashboard Specifics */
 .dashboard-stat-card {
     display: flex;
     flex-direction: column;
@@ -257,4 +256,84 @@ h6 {
 
 .shadow-sm {
     box-shadow: var(--shadow-sm) !important;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-stat-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .stat-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    /* Table Responsiveness */
+    .table-responsive {
+        border: 0;
+        margin-bottom: 1.5rem;
+        border-radius: var(--radius-md);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Stack row columns on mobile */
+    .row > * {
+        margin-bottom: 1rem;
+    }
+
+    .navbar-collapse {
+        background-color: var(--bg-card);
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        margin-top: 0.5rem;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        margin-left: 0 !important;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-item:last-child .nav-link {
+        border-bottom: none;
+    }
+
+    .nav-item .btn {
+        margin-top: 1rem;
+        width: 100%;
+        display: block;
+    }
+}
+
+/* Base Utility for Tables */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
 }

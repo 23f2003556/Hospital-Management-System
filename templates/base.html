@@ -18,31 +18,34 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                hospital+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
+        <div class="container-fluid container-lg">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}">
+                <span class="text-primary fw-bold">hospital+</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <hr class="d-lg-none my-2 text-muted">
                 <ul class="navbar-nav ms-auto align-items-center">
                     {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <span class="nav-link text-muted me-2">Hello, {{ current_user.first_name }}</span>
+                    <li class="nav-item w-100 w-lg-auto mb-2 mb-lg-0">
+                        <span class="nav-link text-muted px-lg-3">Hello, {{ current_user.first_name }}</span>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-danger btn-sm rounded-pill px-4" href="{{ url_for('logout') }}">
+                    <li class="nav-item w-100 w-lg-auto">
+                        <a class="btn btn-outline-danger btn-sm rounded-pill px-4 w-100" href="{{ url_for('logout') }}">
                             <i class="fa-solid fa-sign-out-alt me-1"></i> Logout
                         </a>
                     </li>
                     {% else %}
-                    <li class="nav-item me-2">
-                        <a class="nav-link" href="{{ url_for('login') }}">Staff</a>
+                    <li class="nav-item w-100 w-lg-auto mb-2 mb-lg-0">
+                        <a class="nav-link px-lg-3" href="{{ url_for('login') }}">Staff Portal</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary btn-sm rounded-pill px-4" href="{{ url_for('login') }}">Patient</a>
+                    <li class="nav-item w-100 w-lg-auto">
+                        <a class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm w-100" href="{{ url_for('login') }}">
+                            Patient Login
+                        </a>
                     </li>
                     {% endif %}
                 </ul>
@@ -67,7 +70,10 @@
 
     <footer class="bg-white py-4 mt-auto border-top">
         <div class="container text-center text-muted">
-            <small>&copy; 2026 hospital+. All rights reserved.</small>
+            <div class="mb-2">
+                <span class="fw-bold text-primary">hospital+</span>
+            </div>
+            <small>&copy; 2026 hospital+. Empowering healthcare through technology.</small>
         </div>
     </footer>
 

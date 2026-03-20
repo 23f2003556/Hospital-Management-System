@@ -46,15 +46,15 @@ A role-based hospital management web application for handling patient registrati
 - Doctors: `dr.rajeev@hospital.test` and `dr.priya@hospital.test` / `doctor123`
 - Patients: *None seeded by default*
 
-## Premium Landing Experience
+## Premium Responsive Experience
 
-The landing page has been re-engineered for a **500-bed Indian Multespecialty Hospital** context, focusing on high-impact facility-level metrics and premium UX:
+The Hospital Management System has been fully optimized for a **seamless multi-device experience**, ensuring clinicians and patients can access critical data on any screen size.
 
--   **Hospital-Specific Narrative**: Updated with realistic 500-bed facility data (e.g., **15k+ daily physical files**, **22-min emergency retrieval delays**, etc.).
--   **Vertical Flow Thread**: A subtle gradient "thread" that visually connects all sections, creating a seamless storytelling journey.
--   **Premium Scroll Mouse**: A custom-animated 3D mouse icon replacing generic indicators.
--   **Facility-Level Impact**: Displays projected annual returns like **3,500+ weekly clinician hours saved** and **₹1.8 Cr annual recovery**.
--   **Fully Responsive**: Optimized for modern aesthetics with glassmorphism, 3D tilt effects, and magnetic interactions.
+- **Multi-Device Support**: Specially tailored layouts for **mobile phones, tablets, and laptops**.
+- **Responsive Dashboards**: All Admin, Doctor, and Patient dashboards now feature **horizontal-scroll enabled data tables** and stacking grid layouts.
+- **Mobile Navigation**: A dedicated slide-out mobile menu for the landing page and a standard Bootstrap collapse menu for the internal application.
+- **Glassmorphism & 3D Effects**: Maintained high-end visual fidelity (glassmorphism, 3D tilt, magnetic buttons) while ensuring performance on mobile browsers.
+- **Touch-Friendly UI**: Larger hit targets for buttons and interactive elements to improve usability on touchscreens.
 
 ## Technologies
 

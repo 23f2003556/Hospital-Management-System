@@ -109,6 +109,15 @@
             align-items: center;
         }
 
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
         .btn {
             padding: 0.6rem 1.6rem;
             border-radius: 100px;
@@ -539,10 +548,32 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            nav { padding: 1rem 5%; }
+            .mobile-toggle { display: block; }
+            .nav-links { 
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-color);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--card-border);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                z-index: 99;
+            }
+            .nav-links.active {
+                transform: translateY(0);
+                display: flex;
+            }
             .action-buttons { flex-direction: column; width: 100%; max-width: 320px; }
             .btn-lg { width: 100%; }
-            .hero h1 { font-size: 3rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .platform-name { font-size: 4rem; letter-spacing: -1px; }
+            .section-header h2 { font-size: 2rem; }
+            .stat-number { font-size: 3rem; }
             #cursor-spotlight { display: none; }
         }
 
@@ -772,11 +803,14 @@
 
     <nav>
         <a href="/" class="logo">
-            hospital+
+            <i class="fa-solid fa-hospital-plus"></i> hospital+
         </a>
-        <div class="nav-links">
-            <a href="{{ url_for('login') }}" class="btn btn-outline">Staff</a>
-            <a href="{{ url_for('login') }}" class="btn btn-primary">Patient</a>
+        <button class="mobile-toggle" id="mobileMenuBtn">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="{{ url_for('login') }}" class="btn btn-outline">Staff Login</a>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Patient Portal</a>
         </div>
     </nav>
 
@@ -1112,14 +1146,20 @@
                 });
             });
 
-            // 7. Scroll Progress Bar
-            const progressBar = document.getElementById("myProgressBar");
-            window.addEventListener("scroll", () => {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                if(progressBar) progressBar.style.width = scrolled + "%";
-            });
+            // 8. Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            if(mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if(navLinks.classList.contains('active')) {
+                        icon.classList.replace('fa-bars-staggered', 'fa-xmark');
+                    } else {
+                        icon.classList.replace('fa-xmark', 'fa-bars-staggered');
+                    }
+                });
+            }
         });
     </script>
 </body>
