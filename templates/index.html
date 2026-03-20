@@ -434,6 +434,126 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Role Switcher Styles */
+        .roles-section {
+            padding: 8rem 5%;
+            background: #fbfbfd;
+        }
+        .role-switcher-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+        .role-switcher {
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 100px;
+            display: inline-flex;
+            gap: 0.5rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .role-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+        }
+        .role-btn.active {
+            background: var(--text-color);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .role-content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 450px;
+        }
+        .role-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .role-content.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        .role-image-side {
+            background: #fff;
+            border-radius: 32px;
+            border: 1px solid #f1f5f9;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+        }
+        .role-icon-big {
+            font-size: 8rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 10px 20px rgba(59, 130, 246, 0.2));
+        }
+        .role-text-side h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        .benefit-list {
+            list-style: none;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInRight 0.5s ease forwards;
+            opacity: 0;
+        }
+        .benefit-item i {
+            margin-top: 0.3rem;
+            color: var(--accent-emerald);
+            font-size: 1.2rem;
+        }
+        .benefit-text h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.2rem;
+        }
+        .benefit-text p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 992px) {
+            .role-content { grid-template-columns: 1fr; gap: 2rem; }
+            .role-image-side { padding: 2rem; min-height: 250px; }
+            .role-icon-big { font-size: 5rem; }
+        }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .action-buttons { flex-direction: column; width: 100%; max-width: 320px; }
@@ -586,6 +706,121 @@
             </div>
         </div>
     </section>
+    <section class="roles-section">
+        <div class="section-header reveal">
+            <h2>Designed for <span class="marker-underline marker-emerald active">Everyone.</span></h2>
+            <p>A unified platform with tailored experiences for every stakeholder in the ecosystem.</p>
+        </div>
+
+        <div class="role-switcher-wrapper reveal">
+            <div class="role-switcher">
+                <button class="role-btn active" data-role="patient">Patient</button>
+                <button class="role-btn" data-role="doctor">Doctor</button>
+                <button class="role-btn" data-role="admin">Admin</button>
+            </div>
+        </div>
+
+        <div class="role-content-container reveal">
+            <!-- Patient Content -->
+            <div class="role-content active" id="content-patient">
+                <div class="role-image-side tilt">
+                    <i class="fa-solid fa-user-injured role-icon-big"></i>
+                </div>
+                <div class="role-text-side">
+                    <h3>Empowering <span class="text-rose">Patients.</span></h3>
+                    <ul class="benefit-list">
+                        <li class="benefit-item" style="animation-delay: 0.1s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Instant Booking</h4>
+                                <p>Book appointments with specialists in seconds, not hours.</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item" style="animation-delay: 0.2s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Medical Passport</h4>
+                                <p>Access your entire medical history and prescriptions 24/7.</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item" style="animation-delay: 0.3s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Real-time Tracking</h4>
+                                <p>Track your health progress and receive automated reminders.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Doctor Content -->
+            <div class="role-content" id="content-doctor">
+                <div class="role-image-side tilt">
+                    <i class="fa-solid fa-user-doctor role-icon-big"></i>
+                </div>
+                <div class="role-text-side">
+                    <h3>Precision for <span class="accent-blue" style="color:var(--accent-blue)">Doctors.</span></h3>
+                    <ul class="benefit-list">
+                        <li class="benefit-item" style="animation-delay: 0.1s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Digital Diagnostics</h4>
+                                <p>Access patient vitals and lab history in a unified command center.</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item" style="animation-delay: 0.2s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Smart Prescriptions</h4>
+                                <p>Generate digital prescriptions that sync instantly with pharmacies.</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item" style="animation-delay: 0.3s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Efficiency Engine</h4>
+                                <p>Automated scheduling reduces burnout and maximizes patient care.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Admin Content -->
+            <div class="role-content" id="content-admin">
+                <div class="role-image-side tilt">
+                    <i class="fa-solid fa-user-shield role-icon-big"></i>
+                </div>
+                <div class="role-text-side">
+                    <h3>Control for <span class="accent-purple" style="color:var(--accent-purple)">Admins.</span></h3>
+                    <ul class="benefit-list">
+                        <li class="benefit-item" style="animation-delay: 0.1s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>God-View Analytics</h4>
+                                <p>Monitor hospital-wide resource utilization in real-time dashboards.</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item" style="animation-delay: 0.2s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Resource Allocation</h4>
+                                <p>Optimize staff shifts and equipment usage with AI-driven insights.</p>
+                            </div>
+                        </li>
+                        <li class="benefit-item" style="animation-delay: 0.3s;">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="benefit-text">
+                                <h4>Revenue Intelligence</h4>
+                                <p>Seamlessly track billing, insurance claims, and financial health.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-logo">
@@ -686,6 +921,31 @@
                 const scrolled = window.scrollY;
                 if(glow1) glow1.style.transform = `translateY(${scrolled * 0.1}px)`;
                 if(glow2) glow2.style.transform = `translateY(${scrolled * 0.15}px)`;
+            });
+
+            // 6. Role Switcher Logic
+            const roleButtons = document.querySelectorAll('.role-btn');
+            const roleContents = document.querySelectorAll('.role-content');
+            
+            roleButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const role = btn.getAttribute('data-role');
+                    
+                    // Remove active from all buttons
+                    roleButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Switch content
+                    roleContents.forEach(content => {
+                        content.classList.remove('active');
+                        if(content.id === `content-${role}`) {
+                            // Delay slightly for smoother transition if needed
+                            setTimeout(() => {
+                                content.classList.add('active');
+                            }, 50);
+                        }
+                    });
+                });
             });
         });
     </script>
