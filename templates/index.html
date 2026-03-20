@@ -439,11 +439,56 @@
             .action-buttons { flex-direction: column; width: 100%; max-width: 320px; }
             .btn-lg { width: 100%; }
             .hero h1 { font-size: 3rem; }
+            #cursor-spotlight { display: none; }
+        }
+
+        /* Cursor Spotlight Effect */
+        #cursor-spotlight {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Marker Underline Animation */
+        .marker-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .marker-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            width: 0;
+            height: 40%;
+            background: rgba(59, 130, 246, 0.15);
+            z-index: -1;
+            transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .marker-underline.active::after {
+            width: 100%;
+        }
+        .marker-red::after { background: rgba(244, 63, 94, 0.2); }
+        .marker-emerald::after { background: rgba(16, 185, 129, 0.2); }
+
+        /* Icon Micro-animations */
+        .feature-item:hover .feature-icon-wrapper i {
+            animation: icon-bounce 0.6s ease infinite alternate;
+        }
+        @keyframes icon-bounce {
+            to { transform: translateY(-5px) scale(1.1); }
         }
     </style>
 </head>
 <body>
 
+    <div id="cursor-spotlight"></div>
     <div class="ambient-glow" id="glow-1"></div>
     <div class="ambient-glow" id="glow-2"></div>
 
@@ -459,37 +504,37 @@
 
     <section class="hero">
         <div class="pill">The Future of Hospital Administration</div>
-        <h1>Healthcare,<br><span class="gradient-text">Fully Reimagined.</span></h1>
+        <h1>Healthcare,<br><span class="marker-underline active">Fully Reimagined.</span></h1>
         <p>A unified, AI-ready ecosystem bridging the gap between patients, doctors, and data. Experience unprecedented speed, military-grade security, and breathtaking aesthetics in medical management.</p>
         
         <div class="action-buttons">
-            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started Free</a>
-            <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg"><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right: 8px;"></i> Access System</a>
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg magnetic">Get Started Free</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg magnetic"><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right: 8px;"></i> Access System</a>
         </div>
     </section>
 
     <section class="problem-section">
         <div class="section-header reveal">
-            <h2>The Hidden <span class="text-rose">Crisis.</span></h2>
+            <h2>The Hidden <span class="marker-underline marker-red active">Crisis.</span></h2>
             <p>Traditional healthcare systems are failing patients and staff alike. The data is clear.</p>
         </div>
 
         <div class="stats-grid">
-            <div class="stat-card reveal">
+            <div class="stat-card reveal tilt">
                 <div class="stat-number" data-target="30">0</div>
                 <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">%</span>
                 <h3>Data Loss & Errors</h3>
                 <p>Of critical patient records are temporarily lost, misfiled, or unavailable during appointments in traditional paper-based systems.</p>
             </div>
             
-            <div class="stat-card reveal" style="transition-delay: 0.1s;">
+            <div class="stat-card reveal tilt" style="transition-delay: 0.1s;">
                 <div class="stat-number" data-target="45">0</div>
                 <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">Mins</span>
                 <h3>Wasted Patient Time</h3>
                 <p>The average excessive waiting time caused by disjointed coordination between reception, doctors, and diagnostic labs.</p>
             </div>
 
-            <div class="stat-card reveal" style="transition-delay: 0.2s;">
+            <div class="stat-card reveal tilt" style="transition-delay: 0.2s;">
                 <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">$</span>
                 <div class="stat-number" style="display:inline-block;" data-target="1.2">0.0</div>
                 <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">B</span>
@@ -503,12 +548,12 @@
 
     <section class="solution-section">
         <div class="section-header reveal">
-            <h2>Enter HMS. <br><span class="text-emerald">The Ultimate Solution.</span></h2>
+            <h2>Enter HMS. <br><span class="marker-underline marker-emerald active">The Ultimate Solution.</span></h2>
             <p>We tore down the legacy systems and built an architecture designed for zero friction.</p>
         </div>
 
         <div class="features-grid">
-            <div class="feature-item reveal">
+            <div class="feature-item reveal tilt">
                 <div class="feature-icon-wrapper">
                     <i class="fa-solid fa-database"></i>
                 </div>
@@ -516,7 +561,7 @@
                 <p>Say goodbye to lost files. Every prescription, test result, and medical history is securely encrypted and accessible instantly by authorized personnel.</p>
             </div>
 
-            <div class="feature-item reveal" style="transition-delay: 0.1s;">
+            <div class="feature-item reveal tilt" style="transition-delay: 0.1s;">
                 <div class="feature-icon-wrapper">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
@@ -524,7 +569,7 @@
                 <p>Our smart allocation engine matches patients with available specialists in milliseconds, entirely eliminating scheduling overlaps and reducing wait times to zero.</p>
             </div>
 
-            <div class="feature-item reveal" style="transition-delay: 0.2s;">
+            <div class="feature-item reveal tilt" style="transition-delay: 0.2s;">
                 <div class="feature-icon-wrapper">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
@@ -532,7 +577,7 @@
                 <p>Hospital administrators gain god-view access to resource utilization, doctor availability, and patient influx, allowing for immediate optimization of hospital operations.</p>
             </div>
             
-            <div class="feature-item reveal" style="transition-delay: 0.3s;">
+            <div class="feature-item reveal tilt" style="transition-delay: 0.3s;">
                 <div class="feature-icon-wrapper">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
@@ -552,79 +597,96 @@
     </footer>
 
     <script>
-        // Interactive Scroll Logic
         document.addEventListener("DOMContentLoaded", () => {
             
-            // 1. Reveal Animations on Scroll
+            // 1. Reveal Animations & Number Counting
             const revealElements = document.querySelectorAll(".reveal");
-            
-            const revealOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const revealObserver = new IntersectionObserver((entries, observer) => {
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
                         
-                        // If it's a stat card, trigger number counting
+                        // Marker Animation
+                        const marker = entry.target.querySelector('.marker-underline');
+                        if (marker) marker.classList.add('active');
+
                         if(entry.target.classList.contains('stat-card')) {
                             const numberElement = entry.target.querySelector('.stat-number');
                             if(numberElement && !numberElement.classList.contains('counted')) {
                                 const target = parseFloat(numberElement.getAttribute('data-target'));
-                                const isFloat = target % 1 !== 0; // Check if it's decimal (like 1.2)
-                                animateValue(numberElement, 0, target, 2000, isFloat);
+                                animateValue(numberElement, 0, target, 2000, target % 1 !== 0);
                                 numberElement.classList.add('counted');
                             }
                         }
-                        
-                        // Optional: Unobserve if you only want it to animate once
-                        // observer.unobserve(entry.target); 
                     }
                 });
-            }, revealOptions);
+            }, { threshold: 0.15 });
 
             revealElements.forEach(el => revealObserver.observe(el));
 
-
-            // 2. Number Counting Animation Function
             function animateValue(obj, start, end, duration, isFloat) {
                 let startTimestamp = null;
                 const step = (timestamp) => {
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    
-                    // Add easing (easeOutQuart)
                     const easeProgress = 1 - Math.pow(1 - progress, 4);
-                    
                     const currentVal = start + easeProgress * (end - start);
-                    
-                    if(isFloat) {
-                        obj.innerHTML = currentVal.toFixed(1);
-                    } else {
-                        obj.innerHTML = Math.floor(currentVal);
-                    }
-                    
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    } else {
-                        obj.innerHTML = end; // Ensure exact final value
-                    }
+                    obj.innerHTML = isFloat ? currentVal.toFixed(1) : Math.floor(currentVal);
+                    if (progress < 1) window.requestAnimationFrame(step);
+                    else obj.innerHTML = end; 
                 };
                 window.requestAnimationFrame(step);
             }
 
-            // 3. Dynamic Ambient Glow Following Scroll (subtle parallax)
+            // 2. Cursor Spotlight
+            const spotlight = document.getElementById('cursor-spotlight');
+            document.addEventListener('mousemove', (e) => {
+                if(spotlight) {
+                    spotlight.style.left = e.clientX + 'px';
+                    spotlight.style.top = e.clientY + 'px';
+                }
+            });
+
+            // 3. 3D Tilt Effect
+            const tiles = document.querySelectorAll('.tilt');
+            tiles.forEach(tile => {
+                tile.addEventListener('mousemove', (e) => {
+                    const rect = tile.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 8;
+                    const rotateY = (centerX - x) / 8;
+                    tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+                });
+                tile.addEventListener('mouseleave', () => {
+                    tile.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+                });
+            });
+
+            // 4. Magnetic Buttons
+            const magnetics = document.querySelectorAll('.magnetic');
+            magnetics.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = `translate(0, 0)`;
+                });
+            });
+
+            // 5. Parallax Glows
             const glow1 = document.getElementById('glow-1');
             const glow2 = document.getElementById('glow-2');
-            
             window.addEventListener('scroll', () => {
                 const scrolled = window.scrollY;
                 if(glow1) glow1.style.transform = `translateY(${scrolled * 0.1}px)`;
                 if(glow2) glow2.style.transform = `translateY(${scrolled * 0.15}px)`;
             });
-
         });
     </script>
 </body>
