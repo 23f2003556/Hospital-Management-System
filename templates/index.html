@@ -385,81 +385,44 @@
 
         /* Role Switcher Styles */
         .roles-section {
-            padding: 10rem 5%;
-            background: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-        .roles-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--bloom-color, rgba(59, 130, 246, 0.08)) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            transition: background 0.8s ease;
-            pointer-events: none;
-        }
-        .section-header, .role-switcher-wrapper, .role-content-container {
-            position: relative;
-            z-index: 1;
+            padding: 8rem 5%;
+            background: #fbfbfd;
         }
         .role-switcher-wrapper {
-            margin-bottom: 5rem;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
         }
         .role-switcher {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 100px;
+            display: inline-flex;
+            gap: 0.5rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
         .role-btn {
-            background: #ffffff;
-            border: 1px solid #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #64748b;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-        .role-btn i {
-            font-size: 1.8rem;
-            transition: transform 0.4s ease;
-        }
-        .role-btn span {
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-        .role-btn:hover {
-            transform: translateY(-5px);
-            border-color: #e2e8f0;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+            font-size: 1rem;
         }
         .role-btn.active {
             background: var(--text-color);
-            color: #ffffff;
-            border-color: var(--text-color);
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .role-btn.active i {
-            transform: scale(1.1);
-        }
-
         .role-content-container {
             max-width: 1200px;
             margin: 0 auto;
-            perspective: 2000px;
-            min-height: 500px;
+            position: relative;
+            min-height: 450px;
         }
         .role-content {
             position: absolute;
@@ -468,47 +431,34 @@
             width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 4rem;
             opacity: 0;
-            transform: rotateY(15deg) translateZ(-100px);
+            transform: translateY(20px);
             visibility: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .role-content.active {
             opacity: 1;
-            transform: rotateY(0) translateZ(0);
+            transform: translateY(0);
             visibility: visible;
         }
         .role-image-side {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            padding: 4rem;
+            background: #fff;
+            border-radius: 32px;
+            border: 1px solid #f1f5f9;
+            padding: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(241, 245, 249, 0.5);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.05);
-            transform: translateZ(50px);
-        }
-        .role-text-side {
-            padding-top: 2rem;
-            transform: translateZ(30px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
         }
         .role-icon-big {
-            font-size: 10rem;
+            font-size: 8rem;
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.15));
-        }
-
-        @media (max-width: 992px) {
-            .role-content { grid-template-columns: 1fr; gap: 3rem; position: relative; }
-            .role-switcher { grid-template-columns: repeat(3, 1fr); padding: 0 1rem; }
-            .role-image-side { padding: 3rem; }
+            filter: drop-shadow(0 10px 20px rgba(59, 130, 246, 0.2));
         }
         .role-text-side h3 {
             font-size: 2.5rem;
@@ -785,6 +735,7 @@
         </div>
 
         <div class="scroll-indicator">
+            <span style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; color: #94a3b8;">Discover the Flow</span>
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
             </div>
@@ -836,18 +787,9 @@
 
         <div class="role-switcher-wrapper reveal">
             <div class="role-switcher">
-                <div class="role-btn magnetic active" data-role="patient">
-                    <i class="fa-solid fa-user-injured"></i>
-                    <span>Patient</span>
-                </div>
-                <div class="role-btn magnetic" data-role="doctor">
-                    <i class="fa-solid fa-user-doctor"></i>
-                    <span>Doctor</span>
-                </div>
-                <div class="role-btn magnetic" data-role="admin">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>Admin</span>
-                </div>
+                <button class="role-btn active" data-role="patient">Patient</button>
+                <button class="role-btn" data-role="doctor">Doctor</button>
+                <button class="role-btn" data-role="admin">Admin</button>
             </div>
         </div>
 
@@ -1094,58 +1036,29 @@
                 if(glow2) glow2.style.transform = `translateY(${scrolled * 0.15}px)`;
             });
 
-            // 6. Role Switcher Logic + Ambient Bloom
+            // 6. Role Switcher Logic
             const roleButtons = document.querySelectorAll('.role-btn');
             const roleContents = document.querySelectorAll('.role-content');
-            const roleSection = document.querySelector('.roles-section');
             
-            const bloomColors = {
-                patient: 'rgba(244, 63, 94, 0.12)', // Rose
-                doctor: 'rgba(59, 130, 246, 0.12)',  // Blue
-                admin: 'rgba(16, 185, 129, 0.12)'   // Emerald
-            };
-
             roleButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const role = btn.getAttribute('data-role');
                     
-                    // Update Active Button
+                    // Remove active from all buttons
                     roleButtons.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     
-                    // Update Section Bloom Color
-                    if(roleSection) {
-                        roleSection.style.setProperty('--bloom-color', bloomColors[role]);
-                    }
-
-                    // Switch Content
+                    // Switch content
                     roleContents.forEach(content => {
                         content.classList.remove('active');
                         if(content.id === `content-${role}`) {
+                            // Delay slightly for smoother transition if needed
                             setTimeout(() => {
                                 content.classList.add('active');
                             }, 50);
                         }
                     });
                 });
-            });
-
-            // 6.1 Advanced 3D Parallax for Active Role Content
-            const roleContainer = document.querySelector('.role-content-container');
-            document.addEventListener('mousemove', (e) => {
-                const activeContent = document.querySelector('.role-content.active');
-                if(activeContent && roleContainer) {
-                    const rect = roleContainer.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (centerY - y) / 50;
-                    const rotateY = (x - centerX) / 50;
-                    
-                    activeContent.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
-                }
             });
 
             // 7. Scroll Progress Bar
