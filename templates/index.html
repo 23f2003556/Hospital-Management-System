@@ -13,12 +13,15 @@
     
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --text-color: #f1f5f9;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.5);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --bg-color: #050511;
+            --text-color: #f8fafc;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-rose: #f43f5e;
+            --accent-emerald: #10b981;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --glass-bg: rgba(11, 15, 25, 0.6);
         }
 
         * {
@@ -36,50 +39,53 @@
             position: relative;
         }
 
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.4); 
+        }
+
         /* Ambient Glow Backgrounds */
-        .ambient-glow-1 {
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(0,0,0,0) 70%);
+        .ambient-glow {
+            position: fixed;
             border-radius: 50%;
+            filter: blur(120px);
             z-index: -1;
-            filter: blur(80px);
+            pointer-events: none;
+            transition: all 1s ease;
         }
         
-        .ambient-glow-2 {
-            position: absolute;
-            bottom: -20%;
-            right: -10%;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            z-index: -1;
-            filter: blur(100px);
-        }
+        #glow-1 { top: -20%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%); }
+        #glow-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(0,0,0,0) 70%); }
 
         /* Navbar */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background: rgba(11, 15, 25, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--glass-bg);
             border-bottom: 1px solid var(--card-border);
             z-index: 100;
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -89,8 +95,10 @@
         }
 
         .logo i {
-            color: var(--accent);
-            text-shadow: 0 0 15px var(--accent-glow);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .nav-links {
@@ -99,23 +107,13 @@
             align-items: center;
         }
 
-        .nav-link {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: #fff;
-        }
-
         .btn {
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.6rem 1.8rem;
+            border-radius: 100px;
             font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             display: inline-flex;
@@ -124,41 +122,40 @@
         }
 
         .btn-outline {
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255,255,255,0.15);
             color: #fff;
-            background: rgba(255, 255, 255, 0.05);
+            background: transparent;
         }
         
         .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
             border: none;
-        }
-
-        .btn-primary:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: all 0.5s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+            filter: brightness(1.1);
         }
 
-        .btn-primary:hover:after {
-            left: 100%;
+        /* Shared Reveal Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
@@ -170,46 +167,46 @@
             align-items: center;
             text-align: center;
             padding: 0 5%;
-            padding-top: 5rem;
+            padding-top: 6rem;
             position: relative;
         }
 
         .pill {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.5rem 1.2rem;
             border-radius: 50px;
-            color: #60a5fa;
-            font-size: 0.875rem;
+            color: #cbd5e1;
+            font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 2rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            animation: fadeInDown 0.8s ease forwards;
-            opacity: 0;
+            backdrop-filter: blur(10px);
+            animation: fadeInDown 1s ease forwards;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-size: clamp(3rem, 7vw, 6rem);
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.05;
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             animation: fadeInUp 1s ease 0.2s forwards;
             opacity: 0;
         }
 
         .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+            background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: #94a3b8;
-            max-width: 700px;
+            max-width: 800px;
             line-height: 1.6;
             margin-bottom: 3rem;
             animation: fadeInUp 1s ease 0.4s forwards;
@@ -221,85 +218,45 @@
             gap: 1.2rem;
             animation: fadeInUp 1s ease 0.6s forwards;
             opacity: 0;
+            margin-bottom: 4rem;
         }
 
         .btn-lg {
-            padding: 1rem 2.5rem;
+            padding: 1.1rem 2.5rem;
             font-size: 1.1rem;
         }
 
-        /* Stats Section */
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 5rem;
-            padding: 2rem;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            animation: fadeIn 1s ease 1s forwards;
-            opacity: 0;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 0 1.5rem;
+        /* Problem Section */
+        .problem-section {
+            padding: 8rem 5%;
             position: relative;
-        }
-
-        .stat-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -1.5rem;
-            top: 10%;
-            height: 80%;
-            width: 1px;
-            background: var(--card-border);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.2rem;
-        }
-
-        .stat-label {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 5%;
-            margin-bottom: 5rem;
+            background: linear-gradient(to bottom, transparent, rgba(244, 63, 94, 0.03), transparent);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
             margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .text-rose {
+            color: var(--accent-rose);
         }
 
         .section-header p {
             color: #94a3b8;
+            font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .features-grid {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -307,147 +264,202 @@
             margin: 0 auto;
         }
 
-        .feature-card {
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-top: 1px solid rgba(244, 63, 94, 0.2);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(244, 63, 94, 0.05);
+        }
+
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f43f5e, #fb923c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .stat-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .stat-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Divider */
+        .divider {
+            height: 150px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(244, 63, 94, 0.5), rgba(16, 185, 129, 0.5));
+            margin: 0 auto;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 15px 5px rgba(255,255,255,0.3);
+            animation: slideDown 3s infinite ease-in-out;
+        }
+
+        @keyframes slideDown {
+            0% { top: 0; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 8rem 5%;
+            position: relative;
+            background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.03), transparent);
+        }
+
+        .text-emerald {
+            background: linear-gradient(to right, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 2.5rem;
-            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
         }
 
-        .feature-card::before {
+        .feature-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 70%);
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .feature-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .feature-card:hover::before {
+        .feature-item:hover::before {
             opacity: 1;
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
-            border-radius: 16px;
+        .feature-icon-wrapper {
+            width: 65px;
+            height: 65px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: #60a5fa;
-            margin-bottom: 1.5rem;
-            position: relative;
+            font-size: 1.8rem;
+            color: #10b981;
+            margin-bottom: 2rem;
             z-index: 1;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
-        .feature-card h3 {
+        .feature-item h3 {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
-            position: relative;
             z-index: 1;
         }
 
-        .feature-card p {
+        .feature-item p {
             color: #94a3b8;
-            line-height: 1.6;
-            position: relative;
+            line-height: 1.7;
             z-index: 1;
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--card-border);
-            padding: 3rem 5%;
+            padding: 4rem 5%;
             text-align: center;
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(12px);
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
+            background: rgba(5, 5, 17, 0.9);
+            backdrop-filter: blur(20px);
         }
 
         .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
         }
-        
+
         .footer-logo i {
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .copyright {
             color: #64748b;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        /* Initial Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
-            .nav-link { display: none; }
-            .action-buttons { flex-direction: column; width: 100%; max-width: 300px; }
+            .nav-links { display: none; }
+            .action-buttons { flex-direction: column; width: 100%; max-width: 320px; }
             .btn-lg { width: 100%; }
-            .stat-item:not(:last-child)::after { display: none; }
-            .stats-container { flex-direction: column; gap: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow-1"></div>
-    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow" id="glow-1"></div>
+    <div class="ambient-glow" id="glow-2"></div>
 
     <nav>
         <a href="/" class="logo">
@@ -460,72 +472,174 @@
     </nav>
 
     <section class="hero">
-        <div class="pill">Next-Generation Healthcare</div>
-        <h1>Elevate Your <br><span class="gradient-text">Medical Management</span></h1>
-        <p>A unified ecosystem seamlessly bringing patients, doctors, and administrators together. Experience the pinnacle of modern healthcare administration with unprecedented speed, security, and aesthetics.</p>
+        <div class="pill">The Future of Hospital Administration</div>
+        <h1>Healthcare,<br><span class="gradient-text">Fully Reimagined.</span></h1>
+        <p>A unified, AI-ready ecosystem bridging the gap between patients, doctors, and data. Experience unprecedented speed, military-grade security, and breathtaking aesthetics in medical management.</p>
         
         <div class="action-buttons">
             <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started Free</a>
-            <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg"><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right: 8px;"></i> Access Dashboard</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg"><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right: 8px;"></i> Access System</a>
+        </div>
+    </section>
+
+    <section class="problem-section">
+        <div class="section-header reveal">
+            <h2>The Hidden <span class="text-rose">Crisis.</span></h2>
+            <p>Traditional healthcare systems are failing patients and staff alike. The data is clear.</p>
         </div>
 
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">99%</div>
-                <div class="stat-label">Uptime</div>
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-number" data-target="30">0</div>
+                <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">%</span>
+                <h3>Data Loss & Errors</h3>
+                <p>Of critical patient records are temporarily lost, misfiled, or unavailable during appointments in traditional paper-based systems.</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">5x</div>
-                <div class="stat-label">Faster Workflows</div>
+            
+            <div class="stat-card reveal" style="transition-delay: 0.1s;">
+                <div class="stat-number" data-target="45">0</div>
+                <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">Mins</span>
+                <h3>Wasted Patient Time</h3>
+                <p>The average excessive waiting time caused by disjointed coordination between reception, doctors, and diagnostic labs.</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Secure Data</div>
+
+            <div class="stat-card reveal" style="transition-delay: 0.2s;">
+                <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">$</span>
+                <div class="stat-number" style="display:inline-block;" data-target="1.2">0.0</div>
+                <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">B</span>
+                <h3>Operational Drain</h3>
+                <p>Lost annually in the medical sector strictly due to inefficient resource allocation, missed appointments, and redundant manual entries.</p>
             </div>
         </div>
     </section>
 
-    <section class="features">
-        <div class="section-header">
-            <h2>Everything you need. <br><span class="gradient-text">Unified.</span></h2>
-            <p>Our comprehensive suite of tools covers every aspect of modern hospital operations, wrapped in a beautiful, intuitive interface.</p>
+    <div class="divider reveal"></div>
+
+    <section class="solution-section">
+        <div class="section-header reveal">
+            <h2>Enter HMS. <br><span class="text-emerald">The Ultimate Solution.</span></h2>
+            <p>We tore down the legacy systems and built an architecture designed for zero friction.</p>
         </div>
 
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-calendar-check"></i>
+            <div class="feature-item reveal">
+                <div class="feature-icon-wrapper">
+                    <i class="fa-solid fa-database"></i>
                 </div>
-                <h3>Smart Scheduling</h3>
-                <p>Effortlessly manage appointments with an intuitive, conflict-free booking system designed for maximum efficiency.</p>
+                <h3>Unified Source of Truth</h3>
+                <p>Say goodbye to lost files. Every prescription, test result, and medical history is securely encrypted and accessible instantly by authorized personnel.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-file-medical"></i>
+
+            <div class="feature-item reveal" style="transition-delay: 0.1s;">
+                <div class="feature-icon-wrapper">
+                    <i class="fa-solid fa-bolt"></i>
                 </div>
-                <h3>Unified Records</h3>
-                <p>Access patient histories, treatments, and prescriptions instantly through a single, secure source of truth.</p>
+                <h3>Zero-Friction Scheduling</h3>
+                <p>Our smart allocation engine matches patients with available specialists in milliseconds, entirely eliminating scheduling overlaps and reducing wait times to zero.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-chart-pie"></i>
+
+            <div class="feature-item reveal" style="transition-delay: 0.2s;">
+                <div class="feature-icon-wrapper">
+                    <i class="fa-solid fa-chart-line"></i>
                 </div>
-                <h3>Advanced Analytics</h3>
-                <p>Gain actionable insights into hospital operations, patient flow, and resource utilization in real-time.</p>
+                <h3>Real-Time Analytics</h3>
+                <p>Hospital administrators gain god-view access to resource utilization, doctor availability, and patient influx, allowing for immediate optimization of hospital operations.</p>
+            </div>
+            
+            <div class="feature-item reveal" style="transition-delay: 0.3s;">
+                <div class="feature-icon-wrapper">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Military-Grade Security</h3>
+                <p>Patient confidentiality is paramount. We implement state-of-the-art role-based access control protecting sensitive medical data from unauthorized access.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fa-solid fa-notes-medical"></i> HMS
-            </div>
-            <div class="copyright">
-                &copy; 2026 Hospital Management System. Designed for excellence.
-            </div>
+        <div class="footer-logo">
+            <i class="fa-solid fa-notes-medical"></i> HMS
+        </div>
+        <div class="copyright">
+            &copy; 2026 Hospital Management System. Crafted and perfected for the modern era.
         </div>
     </footer>
 
+    <script>
+        // Interactive Scroll Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Reveal Animations on Scroll
+            const revealElements = document.querySelectorAll(".reveal");
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        
+                        // If it's a stat card, trigger number counting
+                        if(entry.target.classList.contains('stat-card')) {
+                            const numberElement = entry.target.querySelector('.stat-number');
+                            if(numberElement && !numberElement.classList.contains('counted')) {
+                                const target = parseFloat(numberElement.getAttribute('data-target'));
+                                const isFloat = target % 1 !== 0; // Check if it's decimal (like 1.2)
+                                animateValue(numberElement, 0, target, 2000, isFloat);
+                                numberElement.classList.add('counted');
+                            }
+                        }
+                        
+                        // Optional: Unobserve if you only want it to animate once
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+
+            // 2. Number Counting Animation Function
+            function animateValue(obj, start, end, duration, isFloat) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    
+                    // Add easing (easeOutQuart)
+                    const easeProgress = 1 - Math.pow(1 - progress, 4);
+                    
+                    const currentVal = start + easeProgress * (end - start);
+                    
+                    if(isFloat) {
+                        obj.innerHTML = currentVal.toFixed(1);
+                    } else {
+                        obj.innerHTML = Math.floor(currentVal);
+                    }
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        obj.innerHTML = end; // Ensure exact final value
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // 3. Dynamic Ambient Glow Following Scroll (subtle parallax)
+            const glow1 = document.getElementById('glow-1');
+            const glow2 = document.getElementById('glow-2');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                if(glow1) glow1.style.transform = `translateY(${scrolled * 0.1}px)`;
+                if(glow2) glow2.style.transform = `translateY(${scrolled * 0.15}px)`;
+            });
+
+        });
+    </script>
 </body>
 </html>
