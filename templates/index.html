@@ -657,9 +657,55 @@
             display: block;
             opacity: 0.8;
         }
+
+        /* Vertical Flow Thread */
+        .vertical-thread {
+            position: absolute;
+            top: 100vh;
+            left: 50%;
+            width: 2px;
+            height: calc(100% - 100vh);
+            background: linear-gradient(to bottom, 
+                rgba(59, 130, 246, 0.4) 0%, 
+                rgba(129, 140, 248, 0.4) 30%, 
+                rgba(244, 63, 94, 0.4) 60%, 
+                rgba(16, 185, 129, 0.4) 100%);
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Premium Scroll Mouse */
+        .scroll-mouse {
+            width: 26px;
+            height: 44px;
+            border: 2px solid rgba(148, 163, 184, 0.5);
+            border-radius: 14px;
+            position: relative;
+            margin-top: 1.5rem;
+            display: inline-block;
+        }
+        .scroll-wheel {
+            width: 4px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll-anim 2s infinite ease-in-out;
+        }
+        @keyframes scroll-anim {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            20% { opacity: 1; }
+            80% { opacity: 0; transform: translateX(-50%) translateY(14px); }
+            100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
+    <div class="vertical-thread"></div>
     <div class="progress-container">
         <div class="progress-bar" id="myProgressBar"></div>
     </div>
@@ -689,41 +735,43 @@
         </div>
 
         <div class="scroll-indicator">
-            <span>Scroll to Discover</span>
-            <i class="fa-solid fa-chevron-down"></i>
+            <span style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; color: #94a3b8;">Discover the Flow</span>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
         </div>
     </section>
 
     <section class="problem-section">
         <div class="section-header reveal">
-            <h2>The Hidden <span class="marker-underline marker-red active">Crisis.</span></h2>
-            <p>India's healthcare infrastructure faces critical friction points that cost lives and resources.</p>
+            <h2>The Friction <span class="marker-underline marker-red active">Crisis.</span></h2>
+            <p>Impact analysis for a premier 500-bed Indian Multespecialty Hospital.</p>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card reveal tilt">
-                <div class="stat-number" data-target="40">0</div>
-                <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">%</span>
-                <h3>Diagnostic Delays</h3>
-                <p>Of clinical decisions are delayed due to fragmented patient records and unavailable medical history.</p>
-                <span class="source-tag">Source: NITI Aayog Strategy for New India</span>
+                <div class="stat-number" data-target="15000">0</div>
+                <span style="font-size: 1.5rem; color: #f43f5e; font-weight: 800; vertical-align: top;">+</span>
+                <h3>Physical Files Daily</h3>
+                <p>The crushing volume of paper records managed manually, leading to systematic slowdowns in patient care.</p>
+                <span class="source-tag">Metric: Hospital Operations Audit</span>
             </div>
             
             <div class="stat-card reveal tilt" style="transition-delay: 0.1s;">
-                <div class="stat-number" data-target="55">0</div>
+                <div class="stat-number" data-target="22">0</div>
                 <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">Mins</span>
-                <h3>Wasted Patient Time</h3>
-                <p>The average excessive waiting time in Indian public facilities caused by manual registration and coordination.</p>
-                <span class="source-tag">Source: National Family Health Survey (NFHS)</span>
+                <h3>Emergency Retrieval</h3>
+                <p>Average delay in accessing critical patient history during life-threatening emergency admissions.</p>
+                <span class="source-tag">Metric: Quality Compliance Report</span>
             </div>
 
             <div class="stat-card reveal tilt" style="transition-delay: 0.2s;">
                 <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">₹</span>
-                <div class="stat-number" style="display:inline-block;" data-target="15000">0</div>
-                <span style="font-size: 1.5rem; color: #fb923c; font-weight: 800; vertical-align: top;">Cr+</span>
-                <h3>Economic Drain</h3>
-                <p>Lost annually to administrative friction, missed follow-ups, and inefficient resource utilization.</p>
-                <span class="source-tag">Source: ABDM Economic Impact Analysis</span>
+                <div class="stat-number" style="display:inline-block;" data-target="12">0</div>
+                <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">L</span>
+                <h3>Monthly Leakage</h3>
+                <p>Calculated loss due to diagnostic duplication, missing billing entries, and resource misallocation.</p>
+                <span class="source-tag">Metric: Financial Performance Review</span>
             </div>
         </div>
     </section>
@@ -849,40 +897,40 @@
 
     <section class="impact-section">
         <div class="section-header reveal">
-            <h2>The HMS <span class="marker-underline marker-emerald active">Impact.</span></h2>
-            <p>Projected efficiency gains for the Indian medical ecosystem.</p>
+            <h2>Facility <span class="marker-underline marker-emerald active">Impact.</span></h2>
+            <p>Projected annual returns for a single 500-bed deployment.</p>
         </div>
 
         <div class="impact-grid">
             <div class="impact-card reveal stat-card tilt">
                 <div class="impact-value impact-blue">
-                    <span class="stat-number" data-target="12000">0</span>
-                    <span style="font-size: 2rem; margin-bottom: 1rem;">+</span>
+                    <span class="stat-number" data-target="3500">0</span>
+                    <span style="font-size: 1.5rem; margin-bottom: 1rem;">+</span>
                 </div>
-                <div class="impact-label">Hours Reclaimed</div>
-                <p>Total time saved for patients and clinicians through automated ABHA-linked workflows.</p>
-                <span class="source-tag">Source: ABHA Implementation Projections</span>
+                <div class="impact-label">Weekly Hours Reclaimed</div>
+                <p>Clinician time returned to patient care through automated documentation and record retrieval.</p>
+                <span class="source-tag">Metric: Time-Motion Efficiency Study</span>
             </div>
 
             <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.1s;">
                 <div class="impact-value impact-emerald">
-                    <span class="stat-number" data-target="90">0</span>
+                    <span class="stat-number" data-target="98">0</span>
                     <span style="font-size: 2rem; margin-bottom: 1rem;">%</span>
                 </div>
-                <div class="impact-label">Digitization</div>
-                <p>Reduction in manual, paper-based administrative tasks via the unified HMS digital core.</p>
-                <span class="source-tag">Source: Digital India Healthcare Mission</span>
+                <div class="impact-label">Digital Adoption</div>
+                <p>Seamless transition rate from physical to digital touchpoints within the first 60 days.</p>
+                <span class="source-tag">Metric: User Onboarding Analysis</span>
             </div>
 
             <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.2s;">
                 <div class="impact-value impact-purple">
                     <span style="font-size: 2rem; margin-bottom: 1rem;">₹</span>
-                    <span class="stat-number" data-target="20000">0</span>
-                    <span style="font-size: 1.5rem; margin-bottom: 1rem;">Cr+</span>
+                    <span class="stat-number" data-target="1.8">0.0</span>
+                    <span style="font-size: 2rem; margin-bottom: 1rem;">Cr</span>
                 </div>
-                <div class="impact-label">Asset Recovery</div>
-                <p>Annual recovered value from optimized resource allocation and reduced diagnostic duplication.</p>
-                <span class="source-tag">Source: ABDM Efficiency Forecasts</span>
+                <div class="impact-label">Annual Recovery</div>
+                <p>Estimated overhead reclaimed from reduced administrative friction and optimized asset use.</p>
+                <span class="source-tag">Metric: Operational ROI Forecast</span>
             </div>
         </div>
     </section>
