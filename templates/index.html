@@ -609,9 +609,60 @@
         @media (max-width: 992px) {
             .impact-grid { grid-template-columns: 1fr; }
         }
+
+        /* Scroll Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Hero Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--subtle-text);
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Source Tag */
+        .source-tag {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+            display: block;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="myProgressBar"></div>
+    </div>
 
     <div id="cursor-spotlight"></div>
     <div class="ambient-glow" id="glow-1"></div>
@@ -636,35 +687,43 @@
             <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg magnetic">Get Started Free</a>
             <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg magnetic"><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right: 8px;"></i> Access System</a>
         </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll to Discover</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
     </section>
 
     <section class="problem-section">
         <div class="section-header reveal">
             <h2>The Hidden <span class="marker-underline marker-red active">Crisis.</span></h2>
-            <p>Traditional healthcare systems are failing patients and staff alike. The data is clear.</p>
+            <p>India's healthcare infrastructure faces critical friction points that cost lives and resources.</p>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card reveal tilt">
-                <div class="stat-number" data-target="30">0</div>
+                <div class="stat-number" data-target="40">0</div>
                 <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">%</span>
-                <h3>Data Loss & Errors</h3>
-                <p>Of critical patient records are temporarily lost, misfiled, or unavailable during appointments in traditional paper-based systems.</p>
+                <h3>Diagnostic Delays</h3>
+                <p>Of clinical decisions are delayed due to fragmented patient records and unavailable medical history.</p>
+                <span class="source-tag">Source: NITI Aayog Strategy for New India</span>
             </div>
             
             <div class="stat-card reveal tilt" style="transition-delay: 0.1s;">
-                <div class="stat-number" data-target="45">0</div>
+                <div class="stat-number" data-target="55">0</div>
                 <span style="font-size: 2rem; color: #f43f5e; font-weight: 800; vertical-align: top;">Mins</span>
                 <h3>Wasted Patient Time</h3>
-                <p>The average excessive waiting time caused by disjointed coordination between reception, doctors, and diagnostic labs.</p>
+                <p>The average excessive waiting time in Indian public facilities caused by manual registration and coordination.</p>
+                <span class="source-tag">Source: National Family Health Survey (NFHS)</span>
             </div>
 
             <div class="stat-card reveal tilt" style="transition-delay: 0.2s;">
-                <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">$</span>
-                <div class="stat-number" style="display:inline-block;" data-target="1.2">0.0</div>
-                <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">B</span>
-                <h3>Operational Drain</h3>
-                <p>Lost annually in the medical sector strictly due to inefficient resource allocation, missed appointments, and redundant manual entries.</p>
+                <span style="font-size: 2rem; color: #fb923c; font-weight: 800; vertical-align: top;">₹</span>
+                <div class="stat-number" style="display:inline-block;" data-target="15000">0</div>
+                <span style="font-size: 1.5rem; color: #fb923c; font-weight: 800; vertical-align: top;">Cr+</span>
+                <h3>Economic Drain</h3>
+                <p>Lost annually to administrative friction, missed follow-ups, and inefficient resource utilization.</p>
+                <span class="source-tag">Source: ABDM Economic Impact Analysis</span>
             </div>
         </div>
     </section>
@@ -791,7 +850,7 @@
     <section class="impact-section">
         <div class="section-header reveal">
             <h2>The HMS <span class="marker-underline marker-emerald active">Impact.</span></h2>
-            <p>Quantifiable results that redefine healthcare efficiency for everyone.</p>
+            <p>Projected efficiency gains for the Indian medical ecosystem.</p>
         </div>
 
         <div class="impact-grid">
@@ -800,8 +859,9 @@
                     <span class="stat-number" data-target="12000">0</span>
                     <span style="font-size: 2rem; margin-bottom: 1rem;">+</span>
                 </div>
-                <div class="impact-label">Hours Saved</div>
-                <p>Total time reclaimed by patients and staff, eliminating wait cycles and manual handovers.</p>
+                <div class="impact-label">Hours Reclaimed</div>
+                <p>Total time saved for patients and clinicians through automated ABHA-linked workflows.</p>
+                <span class="source-tag">Source: ABHA Implementation Projections</span>
             </div>
 
             <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.1s;">
@@ -809,18 +869,20 @@
                     <span class="stat-number" data-target="90">0</span>
                     <span style="font-size: 2rem; margin-bottom: 1rem;">%</span>
                 </div>
-                <div class="impact-label">Effort Saved</div>
-                <p>Reduction in manual paperwork, redundant entries, and administrative friction across all departments.</p>
+                <div class="impact-label">Digitization</div>
+                <p>Reduction in manual, paper-based administrative tasks via the unified HMS digital core.</p>
+                <span class="source-tag">Source: Digital India Healthcare Mission</span>
             </div>
 
             <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.2s;">
                 <div class="impact-value impact-purple">
-                    <span style="font-size: 2rem; margin-bottom: 1rem;">$</span>
-                    <span class="stat-number" data-target="2.4">0.0</span>
-                    <span style="font-size: 2rem; margin-bottom: 1rem;">M</span>
+                    <span style="font-size: 2rem; margin-bottom: 1rem;">₹</span>
+                    <span class="stat-number" data-target="20000">0</span>
+                    <span style="font-size: 1.5rem; margin-bottom: 1rem;">Cr+</span>
                 </div>
-                <div class="impact-label">Money Saved</div>
-                <p>Recovered annually from operational drain, resource wastage, and insurance processing delays.</p>
+                <div class="impact-label">Asset Recovery</div>
+                <p>Annual recovered value from optimized resource allocation and reduced diagnostic duplication.</p>
+                <span class="source-tag">Source: ABDM Efficiency Forecasts</span>
             </div>
         </div>
     </section>
@@ -949,6 +1011,15 @@
                         }
                     });
                 });
+            });
+
+            // 7. Scroll Progress Bar
+            const progressBar = document.getElementById("myProgressBar");
+            window.addEventListener("scroll", () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                if(progressBar) progressBar.style.width = scrolled + "%";
             });
         });
     </script>
