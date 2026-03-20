@@ -181,7 +181,9 @@
             color: #475569;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: -1rem;
+            position: relative;
+            z-index: 11;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             animation: fadeInDown 1s ease forwards;
@@ -192,8 +194,11 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            margin-top: -3.5rem;
             letter-spacing: -2px;
             color: #0f172a;
+            position: relative;
+            z-index: 10;
             animation: fadeInUp 1s ease 0.2s forwards;
             opacity: 0;
         }
@@ -705,14 +710,17 @@
 
         /* Hero Building Image */
         .hero-building-container {
-            margin: 2rem 0;
+            margin: 0;
             perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
         .hero-building-img {
-            max-width: 420px;
-            width: 85%;
+            max-width: 480px;
+            width: 90%;
             height: auto;
-            filter: drop-shadow(0 30px 60px rgba(59, 130, 246, 0.2));
+            filter: drop-shadow(0 40px 80px rgba(59, 130, 246, 0.1));
             animation: float-hero 6s ease-in-out infinite;
             transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
