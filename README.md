@@ -46,13 +46,24 @@ A role-based hospital management web application for handling patient registrati
 - Doctors: `dr.rajeev@hospital.test` and `dr.priya@hospital.test` / `doctor123`
 - Patients: *None seeded by default*
 
+## Premium Landing Experience
+
+The landing page has been re-engineered for a **500-bed Indian Multespecialty Hospital** context, focusing on high-impact facility-level metrics and premium UX:
+
+-   **Hospital-Specific Narrative**: Updated with realistic 500-bed facility data (e.g., **15k+ daily physical files**, **22-min emergency retrieval delays**, etc.).
+-   **Vertical Flow Thread**: A subtle gradient "thread" that visually connects all sections, creating a seamless storytelling journey.
+-   **Premium Scroll Mouse**: A custom-animated 3D mouse icon replacing generic indicators.
+-   **Facility-Level Impact**: Displays projected annual returns like **3,500+ weekly clinician hours saved** and **₹1.8 Cr annual recovery**.
+-   **Fully Responsive**: Optimized for modern aesthetics with glassmorphism, 3D tilt effects, and magnetic interactions.
+
 ## Technologies
 
 - Backend: Flask
-- Frontend: Jinja2 templates, Bootstrap 5, HTML5, CSS3
+- Frontend: Jinja2 templates, Vanilla CSS3 (Custom Design System), HTML5
 - Database: SQLite (via SQLAlchemy / Flask‑SQLAlchemy)
 - Authentication: Flask‑Login
 - Forms & validation: Flask‑WTF
+- Interactivity: IntersectionObserver API, custom CSS Keyframe animations, magnetic logic.
 
 ## Database Schema (High Level)
 
