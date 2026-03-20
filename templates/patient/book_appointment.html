@@ -10,11 +10,19 @@
     <div class="col-md-6">
       <h5>Available Dates</h5>
       {% if available_dates %}
-        <ul class="list-group mb-3">
+        <ul class="list-group mb-3 hover-selection">
           {% for slot in available_dates %}
-            <li class="list-group-item">
-              <strong>{{ slot.date }}</strong>
-              <div class="small text-muted">{{ slot.start_time.strftime('%H:%M') }} - {{ slot.end_time.strftime('%H:%M') }}</div>
+            <li class="list-group-item selectable-slot" 
+                data-date="{{ slot.date }}" 
+                data-time="{{ slot.start_time.strftime('%H:%M') }}"
+                style="cursor: pointer; transition: all 0.3s ease;">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>{{ slot.date }}</strong>
+                  <div class="small text-muted">{{ slot.start_time.strftime('%H:%M') }} - {{ slot.end_time.strftime('%H:%M') }}</div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-muted opacity-0 selection-icon"></i>
+              </div>
             </li>
           {% endfor %}
         </ul>
@@ -59,4 +67,53 @@
 
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+<style>
+  .selectable-slot:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-left: 4px solid var(--accent-blue);
+    padding-left: 1.25rem;
+  }
+  .selectable-slot.selected {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid var(--accent-blue);
+    padding-left: 1.25rem;
+  }
+  .selectable-slot:hover .selection-icon {
+    opacity: 1 !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slots = document.querySelectorAll('.selectable-slot');
+    const dateInput = document.getElementById('appointment_date');
+    const timeSelect = document.querySelector('select[name="appointment_time"]');
+
+    slots.forEach(slot => {
+      slot.addEventListener('click', function() {
+        // Clear previous selection
+        slots.forEach(s => s.classList.remove('selected'));
+        
+        // Add selected state
+        this.classList.add('selected');
+
+        const date = this.getAttribute('data-date');
+        const time = this.getAttribute('data-time');
+
+        // Fill Form
+        if (dateInput) dateInput.value = date;
+        if (timeSelect) {
+            // Find option or add it if it doesn't exist (though usually it should be in intervals)
+            timeSelect.value = time;
+        }
+
+        // Visual feedback (scroll to form on mobile)
+        if (window.innerWidth < 768) {
+            document.getElementById('bookForm').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
