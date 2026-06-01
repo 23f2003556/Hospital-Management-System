@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hospital+ | Next-Gen Healthcare</title>
+    <title>hospital+ | Next-Gen Healthcare Platform</title>
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -129,6 +129,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
 
         .btn-outline {
@@ -169,17 +170,34 @@
             transform: translateY(0);
         }
 
-        /* Hero Section */
-        .hero {
+        /* REDESIGNED HERO SECTION AND HMS CONSOLES styles */
+        .hero-section-new {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            padding-top: 5rem;
+            padding: 5% 5% 3% 5%;
+            padding-top: 6.5rem;
             position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 3.5rem;
+            align-items: center;
+            text-align: left;
+            margin: auto 0;
+            z-index: 10;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .pill {
@@ -190,18 +208,18 @@
             color: #475569;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             animation: fadeInDown 1s ease forwards;
         }
 
         .platform-name {
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: clamp(3rem, 7vw, 4.8rem);
             font-weight: 900;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             color: #3b82f6;
-            letter-spacing: -3px;
+            letter-spacing: -2px;
             display: inline-block;
             background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
             -webkit-background-clip: text;
@@ -211,54 +229,461 @@
             opacity: 0;
         }
 
-        .platform-name-mini {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-left h1 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             font-weight: 800;
-        }
-
-        .hero h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 3rem;
-            letter-spacing: 0.5px;
-            color: #64748b;
-            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+            color: #0f172a;
             animation: fadeInUp 1s ease 0.2s forwards;
             opacity: 0;
         }
 
-        .gradient-text {
-            background: linear-gradient(to right, #3b82f6, #818cf8, #db2777);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
+        .hero-left p {
+            font-size: clamp(1.05rem, 1.8vw, 1.15rem);
             color: #475569;
-            max-width: 750px;
+            max-width: 600px;
             line-height: 1.6;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             animation: fadeInUp 1s ease 0.4s forwards;
             opacity: 0;
         }
 
-        .action-buttons {
+        .action-buttons-new {
             display: flex;
-            gap: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            width: 100%;
             animation: fadeInUp 1s ease 0.6s forwards;
             opacity: 0;
-            margin-bottom: 4rem;
         }
 
         .btn-lg {
-            padding: 1rem 2.2rem;
-            font-size: 1.05rem;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+        }
+
+        .btn-tech {
+            background: rgba(15, 23, 42, 0.95);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-tech:hover {
+            background: #0f172a;
+            color: #06b6d4;
+            border-color: #06b6d4;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.25);
+        }
+
+        /* Vitals Monitor Card Styling */
+        .clinical-monitor-card {
+            background: rgba(15, 23, 42, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            width: 100%;
+            max-width: 480px;
+            margin-left: auto;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .clinical-monitor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.12) 0%, rgba(0, 0, 0, 0) 60%);
+            pointer-events: none;
+        }
+
+        .monitor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            padding-bottom: 0.65rem;
+        }
+
+        /* Monitor Tab Toggles styling */
+        .monitor-tabs {
+            display: flex;
+            gap: 0.3rem;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .monitor-tab-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 0.56rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .monitor-tab-btn:hover {
+            color: #cbd5e1;
+        }
+
+        .monitor-tab-btn.active {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .monitor-time {
+            color: #06b6d4;
+            font-family: monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* HMS SOFTWARE INTERFACE MODULES STYLING */
+        .hms-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.95rem;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .sim-title {
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        .booking-calendar-wrapper {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.4rem;
+        }
+
+        .cal-day {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 0.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .cal-day span {
+            font-size: 0.52rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .cal-day .day-num {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #94a3b8;
+            margin-top: 0.15rem;
+        }
+
+        .cal-day:hover {
+            border-color: rgba(56, 189, 248, 0.2);
+            background: rgba(56, 189, 248, 0.04);
+        }
+
+        .cal-day.active {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cal-day.active span {
+            color: #38bdf8;
+        }
+
+        .cal-day.active .day-num {
+            color: #f8fafc;
+        }
+
+        .slots-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.4rem;
+        }
+
+        .slot-badge {
+            font-size: 0.62rem;
+            font-weight: 800;
+            padding: 0.45rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: monospace;
+        }
+
+        .slot-badge.available {
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .slot-badge.available:hover {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .slot-badge.available.active {
+            background: #10b981;
+            border-color: #10b981;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .slot-badge.booked {
+            background: rgba(244, 63, 94, 0.05);
+            border: 1px solid rgba(244, 63, 94, 0.08);
+            color: rgba(244, 63, 94, 0.4);
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .selected-details-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 0.75rem 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+        }
+
+        .label-d {
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .val-d {
+            color: #cbd5e1;
+            font-weight: 800;
+        }
+
+        .booking-status-log {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 0.7rem 0.85rem;
+            font-family: monospace;
+            font-size: 0.65rem;
+            color: #38bdf8;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Doctor Dashboard Styling */
+        .patient-consult-vitals {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .consult-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pat-tag {
+            background: rgba(244, 63, 94, 0.12);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            color: #f43f5e;
+            font-size: 0.52rem;
+            font-weight: 800;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .pat-name {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin-left: 0.4rem;
+        }
+
+        .pat-status {
+            font-size: 0.58rem;
+            color: #10b981;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .pat-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 6px #10b981;
+            animation: pulse-green 1.5s infinite;
+        }
+
+        .canvas-container {
+            position: relative;
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            height: 90px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .canvas-container canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 20px 20px;
+            background-image: 
+                linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+            pointer-events: none;
+        }
+
+        .treatment-builder-wrapper {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .treatment-title {
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .prescription-notepad {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 0.75rem;
+            min-height: 80px;
+            font-family: monospace;
+            text-align: left;
+        }
+
+        .rx-heading {
+            font-size: 0.62rem;
+            color: #64748b;
+            font-weight: 800;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .rx-body {
+            font-size: 0.68rem;
+            color: #38bdf8;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .rx-placeholder {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .rx-line {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            animation: slideInRx 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes slideInRx {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .doctor-action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.1fr;
+            gap: 0.5rem;
+        }
+
+        .doctor-action-row .btn {
+            padding: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            border-radius: 100px;
         }
 
         /* Problem Section */
@@ -392,9 +817,6 @@
             color: transparent;
         }
 
-
-        /* Footer */
-
         /* Footer */
         footer {
             border-top: 1px solid #f1f5f9;
@@ -496,14 +918,104 @@
             justify-content: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.03);
         }
-        .role-icon-big {
-            font-size: 8rem;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            filter: drop-shadow(0 10px 20px rgba(59, 130, 246, 0.2));
+        
+        /* Premium Custom SVG animations for HMS HUD Modules */
+        .svg-anim-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
+
+        .patient-heart-svg, .doctor-radar-svg, .admin-network-svg {
+            overflow: visible;
+        }
+
+        /* SVG phone confirmations */
+        .phone-badge {
+            transform-origin: 18px 52px;
+            animation: draw-circle 3s infinite ease-in-out;
+        }
+
+        .phone-check {
+            stroke-dasharray: 20;
+            stroke-dashoffset: 20;
+            animation: draw-check 3s infinite ease-in-out;
+        }
+
+        @keyframes draw-circle {
+            0%, 40% { stroke-dashoffset: 62; opacity: 0; }
+            70%, 100% { stroke-dashoffset: 0; opacity: 1; }
+        }
+
+        @keyframes draw-check {
+            0%, 60% { stroke-dashoffset: 20; }
+            85%, 100% { stroke-dashoffset: 0; }
+        }
+
+        /* SVG doctor console trace */
+        .tablet-ecg-path {
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: scan-ecg-trace 2.5s infinite linear;
+        }
+
+        @keyframes scan-ecg-trace {
+            0% { stroke-dashoffset: 60; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .tablet-rx-line {
+            stroke-dasharray: 20;
+            stroke-dashoffset: 20;
+            animation: type-rx 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tablet-rx-line.line-1 { animation-delay: 0.1s; }
+        .tablet-rx-line.line-2 { animation-delay: 0.5s; }
+        .tablet-rx-line.line-3 { animation-delay: 0.9s; }
+
+        @keyframes type-rx {
+            0%, 20% { stroke-dashoffset: 20; }
+            60%, 100% { stroke-dashoffset: 0; }
+        }
+
+        /* SVG bed flashing */
+        .bed-slot {
+            transition: all 0.3s ease;
+        }
+
+        .bed-slot.vacant {
+            animation: flash-vacant 2s infinite alternate;
+        }
+
+        @keyframes flash-vacant {
+            from { fill: rgba(16, 185, 129, 0.12); stroke: rgba(16, 185, 129, 0.4); }
+            to { fill: rgba(16, 185, 129, 0.25); stroke: #10b981; }
+        }
+
+        .occupancy-fill {
+            animation: adjust-occupancy 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes adjust-occupancy {
+            0% { width: 18px; }
+            100% { width: 38px; }
+        }
+
+        .ripple-pulse-label, .radar-scan-label, .network-status-label {
+            margin-top: 1.25rem;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .ripple-pulse-label { color: #f43f5e; }
+        .radar-scan-label { color: #3b82f6; }
+        .network-status-label { color: #818cf8; }
+
         .role-text-side h3 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -513,19 +1025,37 @@
         .benefit-list {
             list-style: none;
         }
-        .benefit-item {
+        
+        /* Interactive Use Cases Benefit Item */
+        .benefit-card-interactive {
+            padding: 0.75rem 1.1rem;
+            border-radius: 18px;
+            border: 1px solid transparent;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInRight 0.5s ease forwards;
-            opacity: 0;
+            margin-bottom: 1.25rem;
         }
-        .benefit-item i {
+        
+        .benefit-card-interactive:hover {
+            background: #ffffff;
+            border-color: rgba(0, 0, 0, 0.04);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+            transform: translateX(6px);
+        }
+
+        .benefit-card-interactive i {
             margin-top: 0.3rem;
             color: var(--accent-emerald);
             font-size: 1.2rem;
+            transition: transform 0.3s ease;
         }
+        .benefit-card-interactive:hover i {
+            transform: scale(1.2);
+        }
+
         .benefit-text h4 {
             font-size: 1.15rem;
             font-weight: 700;
@@ -535,6 +1065,7 @@
         .benefit-text p {
             color: #64748b;
             line-height: 1.5;
+            font-size: 0.95rem;
         }
         @keyframes fadeInRight {
             from { opacity: 0; transform: translateX(20px); }
@@ -542,9 +1073,26 @@
         }
 
         @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3.5rem;
+                text-align: center;
+            }
+            .hero-left {
+                align-items: center;
+            }
+            .hero-left p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .action-buttons-new {
+                justify-content: center;
+            }
+            .clinical-monitor-card {
+                margin: 0 auto;
+            }
             .role-content { grid-template-columns: 1fr; gap: 2rem; }
             .role-image-side { padding: 2rem; min-height: 250px; }
-            .role-icon-big { font-size: 5rem; }
         }
 
         @media (max-width: 768px) {
@@ -568,10 +1116,8 @@
                 transform: translateY(0);
                 display: flex;
             }
-            .action-buttons { flex-direction: column; width: 100%; max-width: 320px; }
-            .btn-lg { width: 100%; }
             .hero h1 { font-size: 2.5rem; }
-            .platform-name { font-size: 4rem; letter-spacing: -1px; }
+            .platform-name { font-size: 3.6rem; letter-spacing: -1px; }
             .section-header h2 { font-size: 2rem; }
             .stat-number { font-size: 3rem; }
             #cursor-spotlight { display: none; }
@@ -582,12 +1128,11 @@
             position: fixed;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            mix-blend-mode: multiply;
         }
 
         /* Marker Underline Animation */
@@ -611,14 +1156,6 @@
         }
         .marker-red::after { background: rgba(244, 63, 94, 0.2); }
         .marker-emerald::after { background: rgba(16, 185, 129, 0.2); }
-
-        /* Icon Micro-animations */
-        .feature-item:hover .feature-icon-wrapper i {
-            animation: icon-bounce 0.6s ease infinite alternate;
-        }
-        @keyframes icon-bounce {
-            to { transform: translateY(-5px) scale(1.1); }
-        }
 
         /* Impact Section Styles */
         .impact-section {
@@ -696,15 +1233,15 @@
         /* Hero Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 3rem;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.2rem;
+            gap: 0.8rem;
             color: #94a3b8;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -720,10 +1257,10 @@
         }
 
         .scroll-mouse {
-            width: 28px;
-            height: 48px;
+            width: 24px;
+            height: 40px;
             border: 2px solid rgba(148, 163, 184, 0.4);
-            border-radius: 16px;
+            border-radius: 12px;
             position: relative;
             transition: all 0.4s ease;
         }
@@ -738,7 +1275,7 @@
             background: var(--accent-blue);
             border-radius: 2px;
             position: absolute;
-            top: 10px;
+            top: 6px;
             left: 50%;
             transform: translateX(-50%);
             animation: scroll-wheel-anim 2s infinite ease-in-out;
@@ -747,19 +1284,8 @@
         @keyframes scroll-wheel-anim {
             0% { opacity: 0; transform: translateX(-50%) translateY(0); }
             20% { opacity: 1; }
-            80% { opacity: 0; transform: translateX(-50%) translateY(18px); }
+            80% { opacity: 0; transform: translateX(-50%) translateY(14px); }
             100% { opacity: 0; }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* Source Tag */
@@ -779,16 +1305,604 @@
             width: 2px;
             height: calc(100% - 100vh);
             background: linear-gradient(to bottom, 
-                rgba(59, 130, 246, 0.4) 0%, 
-                rgba(129, 140, 248, 0.4) 30%, 
-                rgba(244, 63, 94, 0.4) 60%, 
-                rgba(16, 185, 129, 0.4) 100%);
+                rgba(59, 130, 246, 0.3) 0%, 
+                rgba(129, 140, 248, 0.3) 30%, 
+                rgba(244, 63, 94, 0.3) 60%, 
+                rgba(16, 185, 129, 0.3) 100%);
             transform: translateX(-50%);
             z-index: -1;
             pointer-events: none;
         }
 
+        /* Tech Stack Modal Styling */
+        .tech-modal-glass {
+            border: none;
+            background: transparent;
+            border-radius: 28px;
+            width: 92%;
+            max-width: 920px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            outline: none;
+        }
 
+        .tech-modal-glass[open] {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .tech-modal-glass::backdrop {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tech-modal-glass[open]::backdrop {
+            opacity: 1;
+        }
+
+        .tech-modal-container {
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-height: 85vh;
+            overflow: hidden;
+            color: #e2e8f0;
+            position: relative;
+        }
+
+        .tech-modal-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 75% 0%, rgba(56, 189, 248, 0.1) 0%, rgba(0, 0, 0, 0) 50%);
+            pointer-events: none;
+        }
+
+        .tech-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(30, 41, 59, 0.2);
+        }
+
+        .tech-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tech-logo i {
+            color: #06b6d4;
+            font-size: 1.2rem;
+            filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.5));
+        }
+
+        .tech-close-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .tech-close-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+        }
+
+        .tech-modal-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            flex-grow: 1;
+            overflow: hidden;
+            height: calc(85vh - 60px);
+        }
+
+        .tech-left-pane {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.4);
+            overflow-y: auto;
+        }
+
+        .tech-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .tech-nav-item {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 16px;
+            padding: 0.75rem 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .tech-nav-item i {
+            font-size: 1.3rem;
+            color: #64748b;
+            transition: all 0.3s ease;
+            width: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tech-nav-item h4 {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-nav-item p {
+            color: #64748b;
+            font-size: 0.68rem;
+            margin: 0;
+        }
+
+        .tech-nav-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .tech-nav-item.active {
+            background: rgba(56, 189, 248, 0.06);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .tech-nav-item.active i {
+            color: #38bdf8;
+            filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.3));
+        }
+
+        .tech-nav-item.active h4 {
+            color: #f8fafc;
+        }
+
+        .system-metrics-box {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .metrics-title {
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.65rem;
+            text-transform: uppercase;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-bottom: 0.45rem;
+            align-items: center;
+        }
+
+        .metric-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .metric-val {
+            font-weight: 700;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .dot-pulse {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            animation: pulse-green 1.5s infinite;
+        }
+
+        .tech-right-pane {
+            padding: 1.75rem;
+            overflow-y: auto;
+            background: #090d16;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .tech-tab-panel {
+            display: none;
+            flex-direction: column;
+            gap: 1.1rem;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .tech-tab-panel.active {
+            display: flex;
+        }
+
+        .tech-tab-panel h3 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.1rem;
+        }
+
+        .tech-tab-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .tech-details-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .detail-pill {
+            background: rgba(56, 189, 248, 0.06);
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            border-radius: 100px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .code-box-container {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            background: #020617;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .code-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748b;
+            font-family: monospace;
+        }
+
+        .copy-code-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 0.68rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.2s;
+        }
+
+        .copy-code-btn:hover {
+            color: #38bdf8;
+        }
+
+        .code-pre {
+            margin: 0;
+            padding: 1.1rem;
+            overflow-x: auto;
+        }
+
+        .code-pre code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+            text-align: left;
+            display: block;
+            white-space: pre;
+        }
+
+        /* Schema Map Styling */
+        .schema-map-wrapper {
+            background: rgba(30, 41, 59, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            padding: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .schema-map-title {
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .schema-canvas-container {
+            position: relative;
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .schema-canvas-container canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Custom Developer & API styles inside the modal */
+        .developer-card-glass {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .dev-header-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dev-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+        }
+        .dev-headline h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+        .dev-headline p {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+        .dev-details-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.75rem;
+        }
+        @media (max-width: 576px) {
+            .dev-details-list {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+        .dev-detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            font-size: 0.78rem;
+        }
+        .detail-label {
+            color: #64748b;
+            font-weight: 700;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-value {
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .text-sky {
+            color: #38bdf8 !important;
+        }
+        .text-slate {
+            color: #cbd5e1 !important;
+        }
+        .text-emerald {
+            color: #10b981 !important;
+        }
+        .project-genesis-box {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 1.1rem;
+        }
+        .section-title-small {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            margin-bottom: 0.45rem;
+            text-transform: uppercase;
+        }
+        .text-muted-small {
+            font-size: 0.78rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        /* API Blueprint Endpoints Table */
+        .api-table-wrapper {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .api-table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        .api-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            min-width: 500px;
+        }
+        .api-table th, .api-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            vertical-align: middle;
+        }
+        .api-table th {
+            background: rgba(30, 41, 59, 0.3);
+            color: #64748b;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+        }
+        .api-table tr:last-child td {
+            border-bottom: none;
+        }
+        .api-table tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+        
+        /* HTTP badges */
+        .badge-method {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-align: center;
+            min-width: 55px;
+        }
+        .badge-get {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .badge-post {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .badge-put {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .badge-delete {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .badge-role {
+            display: inline-block;
+            padding: 0.15rem 0.45rem;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .badge-role.admin-only {
+            background: rgba(239, 68, 68, 0.05);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.15);
+        }
+        .badge-role.doctor-only {
+            background: rgba(139, 92, 246, 0.05);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .badge-role.patient-only {
+            background: rgba(6, 182, 212, 0.05);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.15);
+        }
+        .badge-role.public-api {
+            background: rgba(16, 185, 129, 0.05);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .tech-modal-content {
+                grid-template-columns: 1fr;
+                height: auto;
+                max-height: 70vh;
+            }
+            .tech-left-pane {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 1rem;
+            }
+            .tech-right-pane {
+                padding: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -814,10 +1928,133 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="pill">The Future of Hospital Administration</div>
-        <div class="platform-name">hospital+</div>
-        <h1>Healthcare, <span class="marker-underline active">Fully Reimagined.</span></h1>
+    <!-- RESPONSIVE SPLIT-GRID HERO SECTION -->
+    <section class="hero-section-new">
+        <div class="hero-container">
+            <div class="hero-left reveal active">
+                <div class="pill">The Future of Hospital Administration</div>
+                <div class="platform-name">hospital+</div>
+                <h1>A Role-Based <span class="marker-underline active">Hospital Management System</span></h1>
+                <p>Engineered by <a href="https://www.linkedin.com/in/namasteyy/" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 700; border-bottom: 1px dashed rgba(56, 189, 248, 0.4); transition: all 0.2s;" onmouseover="this.style.borderBottomColor='#38bdf8'; this.style.color='#06b6d4';" onmouseout="this.style.borderBottomColor='rgba(56, 189, 248, 0.4)'; this.style.color='#38bdf8';">Jannu Vashisht</a> as an academic project at <a href="https://study.iitm.ac.in/ds/course_pages/BSCS2003P.html" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 700; border-bottom: 1px dashed rgba(56, 189, 248, 0.4); transition: all 0.2s;" onmouseover="this.style.borderBottomColor='#38bdf8'; this.style.color='#06b6d4';" onmouseout="this.style.borderBottomColor='rgba(56, 189, 248, 0.4)'; this.style.color='#38bdf8';">IIT Madras</a>.</p>
+                <div class="action-buttons-new">
+                    <a href="{{ url_for('login') }}" class="btn btn-lg btn-primary magnetic">
+                        <i class="fa-solid fa-hospital-user me-2"></i> Patient Portal
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-lg btn-outline magnetic">
+                        <i class="fa-solid fa-user-md me-2"></i> Staff Login
+                    </a>
+                    <button class="btn btn-lg btn-tech magnetic" id="techBtn" commandfor="tech-dialog" command="show-modal">
+                        <i class="fa-solid fa-microchip me-2"></i> Tech Behind It
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-right reveal active">
+                <!-- hospital+ Core Interface Card -->
+                <div class="clinical-monitor-card tilt">
+                    <div class="monitor-header">
+                        <!-- Header with Toggles for Booking / Doctor Dashboard interfaces -->
+                        <div class="monitor-tabs">
+                            <button class="monitor-tab-btn active" data-monitor="booking">Booking Appt</button>
+                            <button class="monitor-tab-btn" data-monitor="doctor">Doctor Dash</button>
+                        </div>
+                        <span class="monitor-time" id="monitorTime">22:15:30</span>
+                    </div>
+                    
+                    <!-- BOOKING APPOINTMENT INTERACTIVE SOFTWARE MODULE -->
+                    <div class="hms-panel" id="panel-booking">
+                        <div class="sim-title">Interactive Appointment Scheduler</div>
+                        
+                        <div class="booking-calendar-wrapper">
+                            <!-- Mini Week Calendar -->
+                            <div class="calendar-days">
+                                <div class="cal-day"><span>Mon</span><span class="day-num">01</span></div>
+                                <div class="cal-day active"><span>Tue</span><span class="day-num">02</span></div>
+                                <div class="cal-day"><span>Wed</span><span class="day-num">03</span></div>
+                                <div class="cal-day"><span>Thu</span><span class="day-num">04</span></div>
+                                <div class="cal-day"><span>Fri</span><span class="day-num">05</span></div>
+                            </div>
+                            
+                            <!-- Available Slots -->
+                            <div class="slots-container">
+                                <div class="slot-badge booked">09:30 AM</div>
+                                <div class="slot-badge available active">11:00 AM</div>
+                                <div class="slot-badge available">02:30 PM</div>
+                                <div class="slot-badge booked">04:00 PM</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Selected Doctor Details -->
+                        <div class="selected-details-box">
+                            <div class="details-row">
+                                <span class="label-d">Specialist:</span>
+                                <span class="val-d">Dr. Ananya Verma (Cardiology)</span>
+                            </div>
+                            <div class="details-row">
+                                <span class="label-d">Consultation Fee:</span>
+                                <span class="val-d">₹ 800 (Secured)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Confirm Action Button -->
+                        <button class="btn btn-primary w-100" id="confirmBookingBtn">
+                            <i class="fa-solid fa-calendar-check me-2"></i> Confirm Appointment
+                        </button>
+                        
+                        <!-- Status Window -->
+                        <div class="booking-status-log" id="bookingStatusLog">
+                            Select a Tuesday slot and click "Confirm Appointment" to test flow.
+                        </div>
+                    </div>
+                    
+                    <!-- DOCTOR DASHBOARD INTERACTIVE SOFTWARE MODULE -->
+                    <div class="hms-panel" id="panel-doctor" style="display: none;">
+                        <div class="sim-title">Doctor Dashboard Command Console</div>
+                        
+                        <!-- Active Consultation Vitals -->
+                        <div class="patient-consult-vitals">
+                            <div class="consult-header">
+                                <div class="consult-patient">
+                                    <span class="pat-tag">Active</span>
+                                    <span class="pat-name">Rohan Sharma (Patient #P-8902)</span>
+                                </div>
+                                <span class="pat-status">Consultation Live</span>
+                            </div>
+                            
+                            <!-- ECG sweeping Canvas for Active Patient Vitals -->
+                            <div class="canvas-container" style="height: 80px;">
+                                <canvas id="ecgCanvas"></canvas>
+                                <div class="grid-overlay"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Diagnostic & Treatment Builder -->
+                        <div class="treatment-builder-wrapper">
+                            <div class="treatment-title">Active Prescription Generator</div>
+                            <div class="prescription-notepad" id="rxNotepad">
+                                <div class="rx-heading">Rx: Clinical Prescription</div>
+                                <div class="rx-body" id="rxBody">
+                                    <div class="rx-placeholder">Prescribe treatment or log diagnostic files...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Doctor actions -->
+                        <div class="doctor-action-row">
+                            <button class="btn btn-outline btn-sm" id="btnPrescribeMeds">
+                                <i class="fa-solid fa-file-prescription me-1"></i> Prescribe Meds
+                            </button>
+                            <button class="btn btn-outline btn-sm" id="btnDiagnoseFile">
+                                <i class="fa-solid fa-notes-medical me-1"></i> Log Diagnosis
+                            </button>
+                            <button class="btn btn-primary btn-sm" id="btnCompleteConsult">
+                                <i class="fa-solid fa-circle-check me-1"></i> Complete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <a href="#problem" class="scroll-indicator">
             <div class="scroll-mouse">
@@ -827,10 +2064,11 @@
         </a>
     </section>
 
+    <!-- PROBLEM SECTION -->
     <section class="problem-section" id="problem">
         <div class="section-header reveal">
-            <h2>The Friction <span class="marker-underline marker-red active">Crisis.</span></h2>
-            <p>Impact analysis for a premier 500-bed Indian Multespecialty Hospital.</p>
+            <h2>The Friction <span class="marker-underline marker-red">Crisis.</span></h2>
+            <p>Impact analysis for a premier 500-bed Indian Multispecialty Hospital.</p>
         </div>
 
         <div class="stats-grid">
@@ -861,12 +2099,12 @@
         </div>
     </section>
 
+    <div class="divider"></div>
 
-
-
+    <!-- STAKEHOLDER ROLES SECTION -->
     <section class="roles-section">
         <div class="section-header reveal">
-            <h2>Designed for <span class="marker-underline marker-emerald active">Everyone.</span></h2>
+            <h2>Designed for <span class="marker-underline marker-emerald">Everyone.</span></h2>
             <p>A unified platform with tailored experiences for every stakeholder in the ecosystem.</p>
         </div>
 
@@ -881,31 +2119,61 @@
         <div class="role-content-container reveal">
             <!-- Patient Content -->
             <div class="role-content active" id="content-patient">
+                <!-- Patient Booking Smartphone SVG -->
                 <div class="role-image-side tilt">
-                    <i class="fa-solid fa-user-injured role-icon-big"></i>
+                    <div class="svg-anim-wrapper">
+                        <svg class="patient-heart-svg" viewBox="0 0 100 100" width="150" height="150">
+                            <!-- Mobile frame outer -->
+                            <rect x="25" y="5" width="50" height="90" rx="8" ry="8" fill="none" stroke="#64748b" stroke-width="2.5" />
+                            <line x1="42" y1="9" x2="58" y2="9" stroke="#64748b" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="50" cy="90" r="3" fill="#64748b" />
+                            
+                            <!-- Phone screen inside -->
+                            <rect x="28" y="14" width="44" height="70" rx="4" ry="4" fill="#020617" />
+                            
+                            <!-- Calendar slots inside screen -->
+                            <g transform="translate(32, 18)">
+                                <text x="0" y="8" fill="#3b82f6" font-size="5" font-weight="bold" font-family="monospace">BOOK SPECIALIST</text>
+                                
+                                <!-- Slots rows -->
+                                <rect class="phone-slot slot-1" x="0" y="14" width="36" height="8" rx="2" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.4)" stroke-width="0.5" />
+                                <text class="slot-text-1" x="4" y="20" fill="#10b981" font-size="4" font-family="monospace">Dr. Verma 11AM</text>
+                                
+                                <rect class="phone-slot slot-2" x="0" y="25" width="36" height="8" rx="2" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.5" />
+                                <text x="4" y="31" fill="#64748b" font-size="4" font-family="monospace">Dr. Sen  02PM</text>
+                                
+                                <!-- Glowing green confirmation check badge -->
+                                <circle class="phone-badge" cx="18" cy="52" r="10" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="62" />
+                                <path class="phone-check" d="M14,52 L17,55 L22,48" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                        <div class="ripple-pulse-label">PATIENT SELF-BOOKING HUD</div>
+                    </div>
                 </div>
+                
                 <div class="role-text-side">
                     <h3>Empowering <span class="text-rose">Patients.</span></h3>
+                    <!-- Interactive Use Cases triggers -->
                     <ul class="benefit-list">
-                        <li class="benefit-item" style="animation-delay: 0.1s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="booking">
+                            <i class="fa-solid fa-calendar-check"></i>
                             <div class="benefit-text">
-                                <h4>Instant Booking</h4>
-                                <p>Book appointments with specialists in seconds, not hours.</p>
+                                <h4>Appointment Booking</h4>
+                                <p>Search for available doctors and book appointments based on real-time weekly slots.</p>
                             </div>
                         </li>
-                        <li class="benefit-item" style="animation-delay: 0.2s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="passport">
+                            <i class="fa-solid fa-gauge-high"></i>
                             <div class="benefit-text">
-                                <h4>Medical Passport</h4>
-                                <p>Access your entire medical history and prescriptions 24/7.</p>
+                                <h4>Personal Dashboard</h4>
+                                <p>Access an intuitive patient console tracking past visits and future consultation plans.</p>
                             </div>
                         </li>
-                        <li class="benefit-item" style="animation-delay: 0.3s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="tracking">
+                            <i class="fa-solid fa-notes-medical"></i>
                             <div class="benefit-text">
-                                <h4>Real-time Tracking</h4>
-                                <p>Track your health progress and receive automated reminders.</p>
+                                <h4>Medical History</h4>
+                                <p>Instantly review treatments, chronic histories, diagnoses, and prescriptions written by doctors.</p>
                             </div>
                         </li>
                     </ul>
@@ -914,31 +2182,61 @@
 
             <!-- Doctor Content -->
             <div class="role-content" id="content-doctor">
+                <!-- Tablet Diagnostics custom animated SVG -->
                 <div class="role-image-side tilt">
-                    <i class="fa-solid fa-user-doctor role-icon-big"></i>
+                    <div class="svg-anim-wrapper">
+                        <svg class="doctor-radar-svg" viewBox="0 0 100 100" width="150" height="150">
+                            <!-- Tablet landscape frame -->
+                            <rect x="10" y="15" width="80" height="70" rx="8" ry="8" fill="none" stroke="#64748b" stroke-width="2.5" />
+                            <circle cx="14" cy="50" r="1.5" fill="#64748b" />
+                            <rect x="16" y="20" width="68" height="60" rx="4" ry="4" fill="#020617" />
+                            
+                            <!-- Tablet dashboard components -->
+                            <g transform="translate(20, 24)">
+                                <text x="0" y="6" fill="#60a5fa" font-size="5" font-weight="bold" font-family="monospace">DOCTOR CLINICAL CONSOLE</text>
+                                
+                                <!-- Vital graph box -->
+                                <rect x="0" y="12" width="34" height="20" rx="3" fill="rgba(30, 41, 59, 0.4)" stroke="rgba(255, 255, 255, 0.05)" stroke-width="0.5" />
+                                <path class="tablet-ecg-path" d="M2,22 L10,22 L13,15 L16,28 L19,22 L32,22" fill="none" stroke="#10b981" stroke-width="1" />
+                                
+                                <!-- Prescription Notepad representation -->
+                                <rect x="38" y="12" width="22" height="34" rx="2" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(56, 189, 248, 0.2)" stroke-width="0.5" />
+                                <line class="tablet-rx-line line-1" x1="42" y1="18" x2="56" y2="18" stroke="#38bdf8" stroke-width="0.8" />
+                                <line class="tablet-rx-line line-2" x1="42" y1="23" x2="52" y2="23" stroke="#38bdf8" stroke-width="0.8" />
+                                <line class="tablet-rx-line line-3" x1="42" y1="28" x2="54" y2="28" stroke="#64748b" stroke-width="0.8" />
+                                
+                                <!-- Active vital info tags -->
+                                <text x="0" y="38" fill="#94a3b8" font-size="4" font-family="monospace">HR: 72 BPM</text>
+                                <text x="0" y="44" fill="#f43f5e" font-size="4" font-family="monospace">TEMP: 98.6°F</text>
+                            </g>
+                        </svg>
+                        <div class="radar-scan-label">DOCTOR CLINICAL HUD</div>
+                    </div>
                 </div>
+                
                 <div class="role-text-side">
                     <h3>Precision for <span class="accent-blue" style="color:var(--accent-blue)">Doctors.</span></h3>
+                    <!-- Interactive Use Cases triggers -->
                     <ul class="benefit-list">
-                        <li class="benefit-item" style="animation-delay: 0.1s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="diagnostics">
+                            <i class="fa-solid fa-stethoscope"></i>
                             <div class="benefit-text">
-                                <h4>Digital Diagnostics</h4>
-                                <p>Access patient vitals and lab history in a unified command center.</p>
+                                <h4>Doctor Dashboard</h4>
+                                <p>View full daily and weekly appointment schedules and clinical vital charts.</p>
                             </div>
                         </li>
-                        <li class="benefit-item" style="animation-delay: 0.2s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="prescription">
+                            <i class="fa-solid fa-calendar-days"></i>
                             <div class="benefit-text">
-                                <h4>Smart Prescriptions</h4>
-                                <p>Generate digital prescriptions that sync instantly with pharmacies.</p>
+                                <h4>Availability Management</h4>
+                                <p>Easily set and configure your weekly hours and active appointment booking slots.</p>
                             </div>
                         </li>
-                        <li class="benefit-item" style="animation-delay: 0.3s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="engine">
+                            <i class="fa-solid fa-user-md"></i>
                             <div class="benefit-text">
-                                <h4>Efficiency Engine</h4>
-                                <p>Automated scheduling reduces burnout and maximizes patient care.</p>
+                                <h4>Patient Management</h4>
+                                <p>Update EMR diagnostics, log prescriptions, add clinical notes, or complete/cancel sessions.</p>
                             </div>
                         </li>
                     </ul>
@@ -947,31 +2245,70 @@
 
             <!-- Admin Content -->
             <div class="role-content" id="content-admin">
+                <!-- Ward Bed Allocation PC Monitor custom animated SVG -->
                 <div class="role-image-side tilt">
-                    <i class="fa-solid fa-user-shield role-icon-big"></i>
+                    <div class="svg-anim-wrapper">
+                        <svg class="admin-network-svg" viewBox="0 0 100 100" width="150" height="150">
+                            <!-- Desktop PC monitor frame -->
+                            <rect x="15" y="15" width="70" height="52" rx="6" ry="6" fill="none" stroke="#64748b" stroke-width="2.5" />
+                            <rect x="18" y="18" width="64" height="46" rx="3" ry="3" fill="#020617" />
+                            <!-- Monitor Stand -->
+                            <path d="M40,67 L35,82 L65,82 L60,67 Z" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linejoin="round" />
+                            
+                            <!-- Hospital Resource manager inside PC screen -->
+                            <g transform="translate(22, 22)">
+                                <text x="0" y="6" fill="#818cf8" font-size="5" font-weight="bold" font-family="monospace">ADMIN RESOURCE CONTROL</text>
+                                
+                                <!-- Live Ward Bed Allocations (vacant/occupied slots) -->
+                                <g transform="translate(0, 12)">
+                                    <!-- Bed 1 (Occupied - Red) -->
+                                    <rect class="bed-slot occupied" x="0" y="0" width="16" height="10" rx="2" fill="rgba(244, 63, 94, 0.15)" stroke="#f43f5e" stroke-width="0.5" />
+                                    <text x="3" y="7" fill="#f43f5e" font-size="4.5" font-family="monospace">BED-1</text>
+                                    
+                                    <!-- Bed 2 (Vacant - Green) -->
+                                    <rect class="bed-slot vacant" x="20" y="0" width="16" height="10" rx="2" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="0.5" />
+                                    <text x="3" y="7" fill="#10b981" font-size="4.5" font-family="monospace">BED-2</text>
+                                    
+                                    <!-- Bed 3 (Vacant - Green) -->
+                                    <rect class="bed-slot vacant" x="40" y="0" width="16" height="10" rx="2" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="0.5" />
+                                    <text x="3" y="7" fill="#10b981" font-size="4.5" font-family="monospace">BED-3</text>
+                                </g>
+                                
+                                <!-- Live operational statistics bar (Cashflow / Staff availability) -->
+                                <g transform="translate(0, 28)">
+                                    <text x="0" y="6" fill="#64748b" font-size="4" font-family="monospace">BED OCCUPANCY: 33%</text>
+                                    <rect x="0" y="9" width="56" height="3" rx="1.5" fill="rgba(255, 255, 255, 0.05)" />
+                                    <rect class="occupancy-fill" x="0" y="9" width="18" height="3" rx="1.5" fill="#818cf8" />
+                                </g>
+                            </g>
+                        </svg>
+                        <div class="network-status-label">ADMIN OPERATIONAL HUD</div>
+                    </div>
                 </div>
+                
                 <div class="role-text-side">
                     <h3>Control for <span class="accent-purple" style="color:var(--accent-purple)">Admins.</span></h3>
+                    <!-- Interactive Use Cases triggers -->
                     <ul class="benefit-list">
-                        <li class="benefit-item" style="animation-delay: 0.1s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="analytics">
+                            <i class="fa-solid fa-chart-line"></i>
                             <div class="benefit-text">
-                                <h4>God-View Analytics</h4>
-                                <p>Monitor hospital-wide resource utilization in real-time dashboards.</p>
+                                <h4>System Overview</h4>
+                                <p>Access unified dashboards with real-time statistics of doctors, patients, and appointments.</p>
                             </div>
                         </li>
-                        <li class="benefit-item" style="animation-delay: 0.2s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="allocation">
+                            <i class="fa-solid fa-user-gear"></i>
                             <div class="benefit-text">
-                                <h4>Resource Allocation</h4>
-                                <p>Optimize staff shifts and equipment usage with AI-driven insights.</p>
+                                <h4>User Management</h4>
+                                <p>Securely add, edit qualifications, update information, or remove Doctor and Patient accounts.</p>
                             </div>
                         </li>
-                        <li class="benefit-item" style="animation-delay: 0.3s;">
-                            <i class="fa-solid fa-circle-check"></i>
+                        <li class="benefit-card-interactive" data-benefit="revenue">
+                            <i class="fa-solid fa-folder-open"></i>
                             <div class="benefit-text">
-                                <h4>Revenue Intelligence</h4>
-                                <p>Seamlessly track billing, insurance claims, and financial health.</p>
+                                <h4>Core Settings & Exports</h4>
+                                <p>Organize medical departments and export CSV schedules for spreadsheet audits.</p>
                             </div>
                         </li>
                     </ul>
@@ -980,42 +2317,72 @@
         </div>
     </section>
 
-    <section class="impact-section">
+    <!-- IMPACT SECTION (REBRANDED TO CORE CAPABILITIES) -->
+    <section class="impact-section" style="padding-top: 10rem;">
         <div class="section-header reveal">
-            <h2><span class="platform-name-mini">hospital+</span> <span class="marker-underline marker-emerald active">Impact.</span></h2>
-            <p>Projected annual returns for a single 500-bed deployment.</p>
+            <h2>System <span class="marker-underline marker-emerald">Capabilities.</span></h2>
+            <p style="color: #64748b; font-size: 1.15rem;">Robust operational features and architectural patterns implemented in the hospital+ engine.</p>
         </div>
 
         <div class="impact-grid">
-            <div class="impact-card reveal stat-card tilt">
-                <div class="impact-value impact-blue">
-                    <span class="stat-number gain" data-target="3500">0</span>
-                    <span style="font-size: 1.5rem; margin-bottom: 1rem;">+</span>
+            <!-- Card 1: RBAC -->
+            <div class="impact-card reveal tilt">
+                <div class="impact-value" style="font-size: 2.2rem; color: #0284c7; margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-user-shield"></i>
                 </div>
-                <div class="impact-label">Weekly Hours Reclaimed</div>
-                <p>Clinician time returned to patient care through automated documentation and record retrieval.</p>
-                <span class="source-tag">Metric: Time-Motion Efficiency Study</span>
+                <div class="impact-label" style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Role-Based Access Control</div>
+                <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Enforces strict access separation. Secures clinical workflows and layouts specifically tailored for Admins, Doctors, and Patients.</p>
+                <span class="source-tag" style="font-size: 0.7rem; color: #0369a1; font-weight: 700; font-family: monospace; text-transform: uppercase; margin-top: 1.25rem;">Core System</span>
             </div>
 
-            <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.1s;">
-                <div class="impact-value impact-emerald">
-                    <span class="stat-number gain" data-target="98">0</span>
-                    <span style="font-size: 2rem; margin-bottom: 1rem;">%</span>
+            <!-- Card 2: Auth -->
+            <div class="impact-card reveal tilt" style="transition-delay: 0.05s;">
+                <div class="impact-value" style="font-size: 2.2rem; color: #059669; margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-key"></i>
                 </div>
-                <div class="impact-label">Digital Adoption</div>
-                <p>Seamless transition rate from physical to digital touchpoints within the first 60 days.</p>
-                <span class="source-tag">Metric: User Onboarding Analysis</span>
+                <div class="impact-label" style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">User Authentication</div>
+                <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Secure registration and state persistence using PBKDF2 password hashing via Werkzeug and safe session tracking via Flask-Login.</p>
+                <span class="source-tag" style="font-size: 0.7rem; color: #047857; font-weight: 700; font-family: monospace; text-transform: uppercase; margin-top: 1.25rem;">Identity Guard</span>
             </div>
 
-            <div class="impact-card reveal stat-card tilt" style="transition-delay: 0.2s;">
-                <div class="impact-value impact-purple">
-                    <span style="font-size: 2rem; margin-bottom: 1rem;">₹</span>
-                    <span class="stat-number gain" data-target="1.8">0.0</span>
-                    <span style="font-size: 2rem; margin-bottom: 1rem;">Cr</span>
+            <!-- Card 3: Responsive UI -->
+            <div class="impact-card reveal tilt" style="transition-delay: 0.1s;">
+                <div class="impact-value" style="font-size: 2.2rem; color: #6d28d9; margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-tablet-screen-button"></i>
                 </div>
-                <div class="impact-label">Annual Recovery</div>
-                <p>Estimated overhead reclaimed from reduced administrative friction and optimized asset use.</p>
-                <span class="source-tag">Metric: Operational ROI Forecast</span>
+                <div class="impact-label" style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Responsive UI</div>
+                <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Crafted dynamic administrative dashboards and patient portals that render fluidly across mobile, tablet, and desktop monitors via Bootstrap 5.</p>
+                <span class="source-tag" style="font-size: 0.7rem; color: #6d28d9; font-weight: 700; font-family: monospace; text-transform: uppercase; margin-top: 1.25rem;">Bootstrap 5 UI</span>
+            </div>
+
+            <!-- Card 4: REST API -->
+            <div class="impact-card reveal tilt" style="transition-delay: 0.15s;">
+                <div class="impact-value" style="font-size: 2.2rem; color: #0284c7; margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <div class="impact-label" style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">RESTful API Blueprint</div>
+                <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Comprehensive Flask Blueprint endpoints returning JSON payloads for seamless external integrations and client AJAX operations.</p>
+                <span class="source-tag" style="font-size: 0.7rem; color: #0369a1; font-weight: 700; font-family: monospace; text-transform: uppercase; margin-top: 1.25rem;">API Blueprint</span>
+            </div>
+
+            <!-- Card 5: Data Validation -->
+            <div class="impact-card reveal tilt" style="transition-delay: 0.2s;">
+                <div class="impact-value" style="font-size: 2.2rem; color: #059669; margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+                <div class="impact-label" style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Data Validation</div>
+                <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Robust server-side input validation shielding clinical registry data, secure login requests, and scheduler entries via Flask-WTF.</p>
+                <span class="source-tag" style="font-size: 0.7rem; color: #047857; font-weight: 700; font-family: monospace; text-transform: uppercase; margin-top: 1.25rem;">WTForms Security</span>
+            </div>
+
+            <!-- Card 6: Conflict Detection -->
+            <div class="impact-card reveal tilt" style="transition-delay: 0.25s;">
+                <div class="impact-value" style="font-size: 2.2rem; color: #dc2626; margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                </div>
+                <div class="impact-label" style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Conflict Detection</div>
+                <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Automated scheduling sweeps preventing appointment double-booking. Protects doctors' availability constraints in real-time.</p>
+                <span class="source-tag" style="font-size: 0.7rem; color: #b91c1c; font-weight: 700; font-family: monospace; text-transform: uppercase; margin-top: 1.25rem;">Real-time Checks</span>
             </div>
         </div>
     </section>
@@ -1029,17 +2396,354 @@
         </div>
     </footer>
 
+    <!-- GLASSMORPHIC TECH BEHIND IT MODAL DIALOG -->
+    <dialog id="tech-dialog" class="tech-modal-glass">
+        <div class="tech-modal-container">
+            <div class="tech-modal-header">
+                <div class="tech-logo">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <span>hospital+ stack architecture</span>
+                </div>
+                <button class="tech-close-btn" commandfor="tech-dialog" command="close" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="tech-modal-content">
+                <!-- Left Pane: Interactive Stack Navigation -->
+                <div class="tech-left-pane">
+                    <div class="tech-nav-list">
+                        <button class="tech-nav-item active" data-tab="backend">
+                            <i class="fa-solid fa-folder-tree"></i>
+                            <div class="tech-nav-text">
+                                <h4>App Architecture</h4>
+                                <p>MVC Project Files</p>
+                            </div>
+                        </button>
+                        <button class="tech-nav-item" data-tab="database">
+                            <i class="fa-solid fa-database"></i>
+                            <div class="tech-nav-text">
+                                <h4>Database & ORM</h4>
+                                <p>SQLAlchemy Schemas</p>
+                            </div>
+                        </button>
+                        <button class="tech-nav-item" data-tab="security">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div class="tech-nav-text">
+                                <h4>Auth & Security</h4>
+                                <p>Flask-Login, RBAC</p>
+                            </div>
+                        </button>
+                        <button class="tech-nav-item" data-tab="api">
+                            <i class="fa-solid fa-gears"></i>
+                            <div class="tech-nav-text">
+                                <h4>REST API Blueprint</h4>
+                                <p>12 Active Endpoints</p>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- System Metrics Block -->
+                    <div class="system-metrics-box">
+                        <div class="metrics-title">SYSTEM VITALS TELEMETRY</div>
+                        <div class="metric-row">
+                            <span>App Framework:</span>
+                            <span class="metric-val text-emerald">Flask MVC</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Persistence:</span>
+                            <span class="metric-val text-sky">SQLite / ORM</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Active Module:</span>
+                            <span class="metric-val text-warning">Role Access Engine</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Response Latency:</span>
+                            <span class="metric-val">45ms</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Pane: Dynamic Detail & Visualizer -->
+                <div class="tech-right-pane">
+                    <!-- Tab Panel Backend -->
+                    <div class="tech-tab-panel active" id="tab-backend">
+                        <h3>Core Application Engine & Modules</h3>
+                        <p class="tech-tab-desc">Powered by a robust Python MVC architecture featuring <strong>Flask</strong>. Manages the structural files and blueprints defined in Section 7 of the project report:</p>
+                        
+                        <div class="project-genesis-box py-3 mb-2" style="background: rgba(30, 41, 59, 0.2);">
+                            <div class="row g-3">
+                                <div class="col-md-6 d-flex align-items-start gap-2">
+                                    <i class="fa-brands fa-python text-sky mt-1" style="font-size: 0.95rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0 text-slate" style="font-size: 0.78rem; font-weight: 700;">app.py</h6>
+                                        <p class="mb-0 text-slate text-muted-small" style="font-size: 0.72rem;">Main Flask application entry point, loading configuration, registering blueprints, and routing Web UI layouts.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-start gap-2">
+                                    <i class="fa-solid fa-gears text-sky mt-1" style="font-size: 0.95rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0 text-slate" style="font-size: 0.78rem; font-weight: 700;">api.py</h6>
+                                        <p class="mb-0 text-slate text-muted-small" style="font-size: 0.72rem;">Blueprint defining modular, secure RESTful JSON API endpoints for dynamic external or AJAX triggers.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-start gap-2">
+                                    <i class="fa-solid fa-database text-sky mt-1" style="font-size: 0.95rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0 text-slate" style="font-size: 0.78rem; font-weight: 700;">models.py</h6>
+                                        <p class="mb-0 text-slate text-muted-small" style="font-size: 0.72rem;">Database blueprints utilizing SQLAlchemy ORM to manage state relations (Users, Roles, Appointments).</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-start gap-2">
+                                    <i class="fa-solid fa-file-signature text-sky mt-1" style="font-size: 0.95rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0 text-slate" style="font-size: 0.78rem; font-weight: 700;">forms.py</h6>
+                                        <p class="mb-0 text-slate text-muted-small" style="font-size: 0.72rem;">Flask-WTF input templates carrying automated validation filters for registration, login, and slots.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-start gap-2 border-top border-secondary-subtle pt-2 mt-2">
+                                    <i class="fa-solid fa-folder-open text-sky mt-1" style="font-size: 0.95rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0 text-slate" style="font-size: 0.78rem; font-weight: 700;">db_init.py / templates/ / static/</h6>
+                                        <p class="mb-0 text-slate text-muted-small" style="font-size: 0.72rem;">Database initializer seeding baseline roles (Admin/Doctor/Patient) and active folders managing Jinja2 dynamic views and static styling configurations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tech-details-grid">
+                            <div class="detail-pill"><span>Flask 3.0</span></div>
+                            <div class="detail-pill"><span>Jinja2 Templates</span></div>
+                            <div class="detail-pill"><span>Blueprints Routing</span></div>
+                            <div class="detail-pill"><span>Modular Design</span></div>
+                        </div>
+                        
+                        <div class="code-box-container">
+                            <div class="code-box-header">
+                                <span>app.py - Smart Router Factory</span>
+                                <button class="copy-code-btn" data-code="backend-code"><i class="fa-regular fa-copy"></i> Copy</button>
+                            </div>
+                            <pre class="code-pre" id="backend-code"><code>@app.route('/')
+def index():
+    # Elevated custom landing template pipeline
+    return render_template('index.html')
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    # Smart role routing architecture
+    if current_user.has_role('Admin'):
+        return redirect(url_for('admin_dashboard'))
+    elif current_user.has_role('Doctor'):
+        return redirect(url_for('doctor_dashboard'))
+    return redirect(url_for('patient_dashboard'))</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Panel Database -->
+                    <div class="tech-tab-panel" id="tab-database">
+                        <h3>Database Schema & Relational Models</h3>
+                        <p class="tech-tab-desc">Designed using the powerful <strong>SQLAlchemy ORM</strong> engine with an SQLite persistence layer as outlined in Section 5. Managed models include:</p>
+                        
+                        <div class="tech-details-grid mb-2">
+                            <div class="detail-pill"><span>User & Role (M2M)</span></div>
+                            <div class="detail-pill"><span>Patient (1:1 User)</span></div>
+                            <div class="detail-pill"><span>Doctor (1:1 User)</span></div>
+                            <div class="detail-pill"><span>Appointment (M:N)</span></div>
+                            <div class="detail-pill"><span>Treatment (1:1 Appt)</span></div>
+                        </div>
+
+                        <!-- DB Schema Visualizer -->
+                        <div class="schema-map-wrapper">
+                            <div class="schema-map-title">DATABASE MODEL GRAPH (SQLAlchemy)</div>
+                            <div class="schema-canvas-container">
+                                <canvas id="schemaCanvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Panel Security -->
+                    <div class="tech-tab-panel" id="tab-security">
+                        <h3>Session & Perimeter Security</h3>
+                        <p class="tech-tab-desc">Enforces modular, strict access control layers. Employs <strong>Flask-Login</strong> for active session validation and form security layers to block intrusion:</p>
+                        
+                        <div class="project-genesis-box py-3 mb-2" style="background: rgba(30, 41, 59, 0.2);">
+                            <ul class="mb-0 text-slate text-muted-small ps-3 d-flex flex-column gap-2" style="font-size: 0.76rem;">
+                                <li><strong>Role-Based Access Control (RBAC):</strong> Separates permissions cleanly so Admins, Doctors, and Patients only view their authorized templates and endpoints.</li>
+                                <li><strong>Password Integrity:</strong> Secures user credentials using <code>Werkzeug</code> helper libraries to perform PBKDF2 SHA256 password hashing.</li>
+                                <li><strong>Form Validation & CSRF Shields:</strong> Powered by <code>Flask-WTF</code> and <code>WTForms</code> to inspect email structures and filter inputs against Cross-Site Request Forgery.</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details-grid">
+                            <div class="detail-pill"><span>Flask-Login</span></div>
+                            <div class="detail-pill"><span>WTForms CSRF</span></div>
+                            <div class="detail-pill"><span>Werkzeug Crypt</span></div>
+                            <div class="detail-pill"><span>RBAC Decorator</span></div>
+                        </div>
+                        
+                        <div class="code-box-container">
+                            <div class="code-box-header">
+                                <span>security.py - Authorization Perimeter Guard</span>
+                                <button class="copy-code-btn" data-code="security-code"><i class="fa-regular fa-copy"></i> Copy</button>
+                            </div>
+                            <pre class="code-pre" id="security-code"><code>def role_required(*roles):
+    def wrapper(func):
+        @wraps(func)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated:
+                return redirect(url_for('login'))
+            if not current_user.has_role(roles[0]):
+                flash('Perimeter permission error.', 'danger')
+                return redirect(url_for('index'))
+            return func(*args, **kwargs)
+        return decorated_view
+    return wrapper</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Panel API Blueprint -->
+                    <div class="tech-tab-panel" id="tab-api">
+                        <h3>Dynamic REST API Specifications</h3>
+                        <p class="tech-tab-desc">Details of the Flask Blueprint endpoints defined in Section 6 of the report. Enables interactive AJAX payloads and clinical dashboard distributions:</p>
+                        
+                        <div class="api-table-wrapper mb-2">
+                            <div class="api-table-container">
+                                <table class="api-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Endpoint</th>
+                                            <th>Method</th>
+                                            <th>Authorization</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>/api/doctors</code></td>
+                                            <td><span class="badge-method badge-post">POST</span></td>
+                                            <td><span class="badge-role admin-only">Admin</span></td>
+                                            <td class="text-slate">Create a new doctor profile</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/doctors/&lt;id&gt;</code></td>
+                                            <td><span class="badge-method badge-put">PUT</span></td>
+                                            <td><span class="badge-role admin-only">Admin</span></td>
+                                            <td class="text-slate">Update doctor profile qualifications</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/patients</code></td>
+                                            <td><span class="badge-method badge-get">GET</span></td>
+                                            <td><span class="badge-role doctor-only">Admin/Doc</span></td>
+                                            <td class="text-slate">Fetch search-filtered patient index</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/patients/&lt;id&gt;/history</code></td>
+                                            <td><span class="badge-method badge-get">GET</span></td>
+                                            <td><span class="badge-role doctor-only">Admin/Doc</span></td>
+                                            <td class="text-slate">Fetch complete medical history</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/appointments</code></td>
+                                            <td>
+                                                <span class="badge-method badge-get">GET</span><br>
+                                                <span class="badge-method badge-post" style="margin-top: 2px;">POST</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge-role public-api">Public</span><br>
+                                                <span class="badge-role patient-only" style="margin-top: 2px;">Patient</span>
+                                            </td>
+                                            <td class="text-slate">Fetch availability list / Book new appointment with availability conflicts checks</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/appointments/&lt;id&gt;</code></td>
+                                            <td>
+                                                <span class="badge-method badge-put">PUT</span><br>
+                                                <span class="badge-method badge-delete" style="margin-top: 2px;">DELETE</span>
+                                            </td>
+                                            <td><span class="badge-role patient-only">Patient</span></td>
+                                            <td class="text-slate">Update details or cancel appointment</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/admin/stats</code></td>
+                                            <td><span class="badge-method badge-get">GET</span></td>
+                                            <td><span class="badge-role admin-only">Admin</span></td>
+                                            <td class="text-slate">Dashboard statistics JSON seed</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/api/doctor/appointments_distribution</code></td>
+                                            <td><span class="badge-method badge-get">GET</span></td>
+                                            <td><span class="badge-role doctor-only">Doctor</span></td>
+                                            <td class="text-slate">Daily appointment distribution metrics</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tech-details-grid">
+                            <div class="detail-pill"><span>JSON Blueprint</span></div>
+                            <div class="detail-pill"><span>AJAX Routing</span></div>
+                            <div class="detail-pill"><span>Double-Booking Guards</span></div>
+                            <div class="detail-pill"><span>Access Checks</span></div>
+                        </div>
+
+                        <div class="code-box-container">
+                            <div class="code-box-header">
+                                <span>booking.js - AJAX Appointment API Client</span>
+                                <button class="copy-code-btn" data-code="api-code"><i class="fa-regular fa-copy"></i> Copy</button>
+                            </div>
+                            <pre class="code-pre" id="api-code"><code>// Client trigger to submit booked appointment parameters
+async function bookAppointment(doctorId, date, time, reason) {
+    const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken()
+        },
+        body: JSON.stringify({
+            doctor_id: doctorId,
+            appointment_date: date,
+            appointment_time: time,
+            reason: reason
+        })
+    });
+    if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || 'Server error occurred');
+    }
+    return await response.json();
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            // 1. Reveal Animations & Number Counting
+            // 1. Scroll Progress Bar
+            const myProgressBar = document.getElementById('myProgressBar');
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                if(myProgressBar) {
+                    myProgressBar.style.width = scrolled + "%";
+                }
+            });
+
+            // 2. Reveal Animations & Number Counting
             const revealElements = document.querySelectorAll(".reveal");
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
                         
-                        // Marker Animation
+                        // Marker Underline Animation
                         const marker = entry.target.querySelector('.marker-underline');
                         if (marker) marker.classList.add('active');
 
@@ -1053,7 +2757,7 @@
                         }
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.1 });
 
             revealElements.forEach(el => revealObserver.observe(el));
 
@@ -1071,7 +2775,7 @@
                 window.requestAnimationFrame(step);
             }
 
-            // 2. Cursor Spotlight
+            // 3. Cursor Spotlight
             const spotlight = document.getElementById('cursor-spotlight');
             document.addEventListener('mousemove', (e) => {
                 if(spotlight) {
@@ -1080,7 +2784,7 @@
                 }
             });
 
-            // 3. 3D Tilt Effect
+            // 4. 3D Tilt Effect
             const tiles = document.querySelectorAll('.tilt');
             tiles.forEach(tile => {
                 tile.addEventListener('mousemove', (e) => {
@@ -1091,14 +2795,14 @@
                     const centerY = rect.height / 2;
                     const rotateX = (y - centerY) / 8;
                     const rotateY = (centerX - x) / 8;
-                    tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+                    tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
                 });
                 tile.addEventListener('mouseleave', () => {
                     tile.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
                 });
             });
 
-            // 4. Magnetic Buttons
+            // 5. Magnetic Buttons
             const magnetics = document.querySelectorAll('.magnetic');
             magnetics.forEach(btn => {
                 btn.addEventListener('mousemove', (e) => {
@@ -1112,16 +2816,16 @@
                 });
             });
 
-            // 5. Parallax Glows
+            // 6. Parallax Glows
             const glow1 = document.getElementById('glow-1');
             const glow2 = document.getElementById('glow-2');
             window.addEventListener('scroll', () => {
                 const scrolled = window.scrollY;
-                if(glow1) glow1.style.transform = `translateY(${scrolled * 0.1}px)`;
-                if(glow2) glow2.style.transform = `translateY(${scrolled * 0.15}px)`;
+                if(glow1) glow1.style.transform = `translateY(${scrolled * 0.12}px)`;
+                if(glow2) glow2.style.transform = `translateY(${scrolled * 0.16}px)`;
             });
 
-            // 6. Role Switcher Logic
+            // 7. Role Switcher Logic
             const roleButtons = document.querySelectorAll('.role-btn');
             const roleContents = document.querySelectorAll('.role-content');
             
@@ -1137,7 +2841,6 @@
                     roleContents.forEach(content => {
                         content.classList.remove('active');
                         if(content.id === `content-${role}`) {
-                            // Delay slightly for smoother transition if needed
                             setTimeout(() => {
                                 content.classList.add('active');
                             }, 50);
@@ -1160,6 +2863,571 @@
                     }
                 });
             }
+
+            // --------------------- LIVE TELEMETRY SIMULATIONS ---------------------
+            
+            // A. Update Clock Time inside Monitor Header
+            const timeEl = document.getElementById('monitorTime');
+            function updateClock() {
+                const now = new Date();
+                const hrs = String(now.getHours()).padStart(2, '0');
+                const mins = String(now.getMinutes()).padStart(2, '0');
+                const secs = String(now.getSeconds()).padStart(2, '0');
+                if (timeEl) {
+                    timeEl.textContent = `${hrs}:${mins}:${secs}`;
+                }
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // Setup global variables for ECG loop control
+            window.ecgPulseDuration = 65;
+
+            // B. HTML5 Canvas Live ECG Heart Monitor Animation (inside Doctor dashboard panel)
+            const ecgCanvas = document.getElementById('ecgCanvas');
+            if (ecgCanvas) {
+                const ecgCtx = ecgCanvas.getContext('2d');
+                let ecgW = ecgCanvas.width = ecgCanvas.offsetWidth;
+                let ecgH = ecgCanvas.height = ecgCanvas.offsetHeight;
+                
+                window.addEventListener('resize', () => {
+                    if (ecgCanvas.offsetWidth > 0) {
+                        ecgW = ecgCanvas.width = ecgCanvas.offsetWidth;
+                        ecgH = ecgCanvas.height = ecgCanvas.offsetHeight;
+                    }
+                });
+
+                const totalPoints = 280;
+                const points = [];
+                for (let i = 0; i < totalPoints; i++) {
+                    points.push(ecgH / 2);
+                }
+                
+                let scanIndex = 0;
+                let frameCount = 0;
+                
+                // Classic cardiac wave calculations (P-Q-R-S-T)
+                function getECGHeight(t, h) {
+                    const mid = h / 2;
+                    const duration = window.ecgPulseDuration || 65;
+                    const cycle = t % duration;
+                    
+                    if (cycle === 0) return mid;
+                    if (cycle > 0 && cycle < 4) {
+                        // P-wave
+                        return mid - Math.sin((cycle / 4) * Math.PI) * 5;
+                    }
+                    if (cycle >= 6 && cycle < 8) {
+                        // Q-dip
+                        return mid + 4;
+                    }
+                    if (cycle >= 8 && cycle < 11) {
+                        // R-spike
+                        const scale = (cycle - 8) / 3;
+                        return mid - 26 * Math.sin(scale * Math.PI);
+                    }
+                    if (cycle >= 11 && cycle < 13) {
+                        // S-dip
+                        const scale = (cycle - 11) / 2;
+                        return mid + 12 * Math.sin(scale * Math.PI);
+                    }
+                    if (cycle >= 18 && cycle < 26) {
+                        // T-wave
+                        const scale = (cycle - 18) / 8;
+                        return mid - 8 * Math.sin(scale * Math.PI);
+                    }
+                    return mid; // flatline resting state
+                }
+
+                function drawECG() {
+                    if (ecgCanvas.offsetWidth === 0) {
+                        requestAnimationFrame(drawECG);
+                        return;
+                    }
+                    
+                    ecgCtx.clearRect(0, 0, ecgW, ecgH);
+                    
+                    // Draw clean green grid background
+                    ecgCtx.strokeStyle = 'rgba(16, 185, 129, 0.05)';
+                    ecgCtx.lineWidth = 1;
+                    const gridSpacing = 15;
+                    for (let g = 0; g < ecgW; g += gridSpacing) {
+                        ecgCtx.beginPath(); ecgCtx.moveTo(g, 0); ecgCtx.lineTo(g, ecgH); ecgCtx.stroke();
+                    }
+                    for (let g = 0; g < ecgH; g += gridSpacing) {
+                        ecgCtx.beginPath(); ecgCtx.moveTo(0, g); ecgCtx.lineTo(ecgW, g); ecgCtx.stroke();
+                    }
+                    
+                    // Add point to sweep array
+                    frameCount++;
+                    points[scanIndex] = getECGHeight(frameCount, ecgH);
+                    
+                    // Render the sweeping path
+                    ecgCtx.beginPath();
+                    ecgCtx.lineWidth = 2;
+                    ecgCtx.strokeStyle = '#10b981';
+                    ecgCtx.shadowBlur = 6;
+                    ecgCtx.shadowColor = '#10b981';
+                    
+                    for (let i = 0; i < ecgW; i++) {
+                        const pIdx = Math.floor((i / ecgW) * totalPoints);
+                        
+                        // Render scan gap
+                        const dist = Math.abs(pIdx - scanIndex);
+                        if (dist < 6 || (scanIndex < 6 && pIdx > totalPoints - 6)) {
+                            ecgCtx.stroke();
+                            ecgCtx.beginPath();
+                            continue;
+                        }
+                        
+                        if (i === 0) {
+                            ecgCtx.moveTo(i, points[pIdx]);
+                        } else {
+                            ecgCtx.lineTo(i, points[pIdx]);
+                        }
+                    }
+                    ecgCtx.stroke();
+                    
+                    // Draw cursor glow dot
+                    const cursorX = (scanIndex / totalPoints) * ecgW;
+                    ecgCtx.beginPath();
+                    ecgCtx.arc(cursorX, points[scanIndex], 3, 0, 2 * Math.PI);
+                    ecgCtx.fillStyle = '#ffffff';
+                    ecgCtx.shadowBlur = 10;
+                    ecgCtx.shadowColor = '#10b981';
+                    ecgCtx.fill();
+                    
+                    scanIndex = (scanIndex + 1) % totalPoints;
+                    requestAnimationFrame(drawECG);
+                }
+                drawECG();
+            }
+
+            // --------------------- MONITOR TAB TOGGLE LOGIC ---------------------
+            const monitorTabBtns = document.querySelectorAll('.monitor-tab-btn');
+            const panelBooking = document.getElementById('panel-booking');
+            const panelDoctor = document.getElementById('panel-doctor');
+
+            monitorTabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    monitorTabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const monitorType = btn.getAttribute('data-monitor');
+                    if (monitorType === 'booking') {
+                        panelBooking.style.display = 'flex';
+                        panelDoctor.style.display = 'none';
+                    } else {
+                        panelBooking.style.display = 'none';
+                        panelDoctor.style.display = 'flex';
+                    }
+                });
+            });
+
+            // --------------------- INTERACTIVE SCHEDULER CLICKS ---------------------
+            const calDays = document.querySelectorAll('.cal-day');
+            const bookingStatusLog = document.getElementById('bookingStatusLog');
+            
+            calDays.forEach(day => {
+                day.addEventListener('click', () => {
+                    calDays.forEach(d => d.classList.remove('active'));
+                    day.classList.add('active');
+                    const dayName = day.querySelector('span').textContent;
+                    bookingStatusLog.textContent = `Active day set to ${dayName}. Select an available slot above...`;
+                    bookingStatusLog.style.color = '#38bdf8';
+                });
+            });
+
+            const slotBadges = document.querySelectorAll('.slot-badge.available');
+            slotBadges.forEach(badge => {
+                badge.addEventListener('click', () => {
+                    slotBadges.forEach(b => b.classList.remove('active'));
+                    badge.classList.add('active');
+                    bookingStatusLog.textContent = `Selected slot: ${badge.textContent}. Click "Confirm Appointment" below.`;
+                    bookingStatusLog.style.color = '#38bdf8';
+                });
+            });
+
+            const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+            let bookingRunning = false;
+            
+            if (confirmBookingBtn) {
+                confirmBookingBtn.addEventListener('click', () => {
+                    if (bookingRunning) return;
+                    bookingRunning = true;
+                    
+                    const selectedSlot = document.querySelector('.slot-badge.available.active');
+                    const activeDay = document.querySelector('.cal-day.active span:nth-child(1)');
+                    const slotText = selectedSlot ? selectedSlot.textContent : "11:00 AM";
+                    const dayText = activeDay ? activeDay.textContent : "Tue";
+                    
+                    bookingStatusLog.textContent = `[SCHEDULER] Verifying specialist availability for ${dayText} at ${slotText}...`;
+                    bookingStatusLog.style.color = '#f59e0b';
+                    
+                    setTimeout(() => {
+                        bookingStatusLog.textContent = `[SCHEDULER] Allocating slot... Validating security token...`;
+                        
+                        setTimeout(() => {
+                            bookingStatusLog.innerHTML = `<span class="text-success"><i class="fa-solid fa-circle-check"></i> APPOINTMENT BOOKED!</span><br>Slot Locked: ${dayText} ${slotText}. Reciept #HMS-4920 dispatched.`;
+                            bookingStatusLog.style.color = '#10b981';
+                            
+                            // Micro-vibe Heart check trigger on patient mobile app preview
+                            const heartCheck = patientHeartSvg?.querySelector('.phone-badge');
+                            if (heartCheck) {
+                                heartCheck.style.stroke = '#10b981';
+                                heartCheck.style.filter = 'drop-shadow(0 0 8px #10b981)';
+                            }
+                            
+                            setTimeout(() => {
+                                bookingRunning = false;
+                            }, 3000);
+                            
+                        }, 1200);
+                    }, 1000);
+                });
+            }
+
+            // --------------------- INTERACTIVE CLINICAL DASHBOARD GENERATORS ---------------------
+            const btnPrescribeMeds = document.getElementById('btnPrescribeMeds');
+            const rxBody = document.getElementById('rxBody');
+            let medsPrescribed = false;
+            
+            if (btnPrescribeMeds) {
+                btnPrescribeMeds.addEventListener('click', () => {
+                    rxBody.innerHTML = `
+                        <div class="rx-line"><i class="fa-solid fa-pills text-rose"></i> <span>Amoxicillin 500mg (TID x 7 Days)</span></div>
+                        <div class="rx-line"><i class="fa-solid fa-prescription-bottle-medical text-blue"></i> <span>Paracetamol 650mg (PRN for Pain)</span></div>
+                    `;
+                    medsPrescribed = true;
+                    window.ecgPulseDuration = 35; // speed up vitals trace slightly indicating prescription dispatch active
+                    
+                    setTimeout(() => {
+                        window.ecgPulseDuration = 65;
+                    }, 3000);
+                });
+            }
+
+            const btnDiagnoseFile = document.getElementById('btnDiagnoseFile');
+            if (btnDiagnoseFile) {
+                btnDiagnoseFile.addEventListener('click', () => {
+                    const existingMeds = medsPrescribed ? rxBody.innerHTML : '';
+                    rxBody.innerHTML = existingMeds + `
+                        <div class="rx-line"><i class="fa-solid fa-notes-medical text-emerald"></i> <span>Diagnosis: Acute Pharyngitis</span></div>
+                        <div class="rx-line"><i class="fa-solid fa-check text-success"></i> <span>Vitals synced with Patient EMR</span></div>
+                    `;
+                });
+            }
+
+            const btnCompleteConsult = document.getElementById('btnCompleteConsult');
+            if (btnCompleteConsult) {
+                btnCompleteConsult.addEventListener('click', () => {
+                    rxBody.innerHTML = `
+                        <div class="text-success" style="font-weight:bold; text-align:center; padding: 0.8rem 0; font-size:0.75rem;">
+                            <i class="fa-solid fa-cloud-arrow-up me-2"></i> CONSULTATION COMPLETED
+                        </div>
+                        <div style="font-size:0.6rem; color:#64748b; text-align:center;">
+                            Ledger Entry Saved. Invoice #INV-8902 generated (₹ 800).
+                        </div>
+                    `;
+                    
+                    // Make admin bed screen slots occupancy bar pulse
+                    const occBar = adminNetworkSvg?.querySelector('.occupancy-fill');
+                    if (occBar) {
+                        occBar.style.fill = '#10b981';
+                        occBar.style.width = '38px';
+                    }
+                    
+                    setTimeout(() => {
+                        if (occBar) {
+                            occBar.style.fill = '#818cf8';
+                            occBar.style.width = '18px';
+                        }
+                        // Reset notepad
+                        setTimeout(() => {
+                            rxBody.innerHTML = `<div class="rx-placeholder">Prescribe treatment or log diagnostic files...</div>`;
+                            medsPrescribed = false;
+                        }, 1200);
+                    }, 3000);
+                });
+            }
+
+            // --------------------- STAKEHOLDER ROLES INTERACTIVE INTERACTION ENGINE ---------------------
+            const interactiveBenefitItems = document.querySelectorAll('.benefit-card-interactive');
+
+            interactiveBenefitItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    const benefitType = item.getAttribute('data-benefit');
+                    
+                    // A. Patient tab interactions
+                    if (benefitType === 'booking') {
+                        const slots = patientHeartSvg?.querySelectorAll('.phone-slot');
+                        slots?.forEach(s => s.style.fill = 'rgba(56, 189, 248, 0.25)');
+                    }
+                    if (benefitType === 'passport') {
+                        const check = patientHeartSvg?.querySelector('.phone-check');
+                        if (check) check.style.stroke = '#38bdf8';
+                    }
+                    if (benefitType === 'tracking') {
+                        const screen = patientHeartSvg?.querySelector('rect[fill="#020617"]');
+                        if (screen) screen.style.fill = '#090d16';
+                    }
+                    
+                    // B. Doctor tab interactions
+                    if (benefitType === 'diagnostics') {
+                        const trace = doctorRadarSvg?.querySelector('.tablet-ecg-path');
+                        if (trace) trace.style.animationDuration = '1s';
+                    }
+                    if (benefitType === 'prescription') {
+                        const lines = doctorRadarSvg?.querySelectorAll('.tablet-rx-line');
+                        lines?.forEach(l => l.style.stroke = '#10b981');
+                    }
+                    if (benefitType === 'engine') {
+                        const consoleText = doctorRadarSvg?.querySelector('text');
+                        if (consoleText) consoleText.style.fill = '#10b981';
+                    }
+                    
+                    // C. Admin tab interactions
+                    if (benefitType === 'analytics') {
+                        const monitorScreen = adminNetworkSvg?.querySelector('rect[fill="#020617"]');
+                        if (monitorScreen) monitorScreen.style.fill = '#090d16';
+                    }
+                    if (benefitType === 'allocation') {
+                        const beds = adminNetworkSvg?.querySelectorAll('.bed-slot.vacant');
+                        beds?.forEach(b => b.style.fill = '#38bdf8');
+                    }
+                    if (benefitType === 'revenue') {
+                        const fillBar = adminNetworkSvg?.querySelector('.occupancy-fill');
+                        if (fillBar) fillBar.style.fill = '#f59e0b';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    const benefitType = item.getAttribute('data-benefit');
+                    
+                    // Restore Patient default
+                    const slots = patientHeartSvg?.querySelectorAll('.phone-slot');
+                    slots?.forEach((s, idx) => {
+                        if (idx === 0) s.style.fill = 'rgba(16, 185, 129, 0.15)';
+                        else s.style.fill = 'rgba(255, 255, 255, 0.05)';
+                    });
+                    const check = patientHeartSvg?.querySelector('.phone-check');
+                    if (check) check.style.stroke = '#10b981';
+                    const screen = patientHeartSvg?.querySelector('rect[fill="#090d16"]');
+                    if (screen) screen.style.fill = '#020617';
+                    
+                    // Restore Doctor default
+                    const trace = doctorRadarSvg?.querySelector('.tablet-ecg-path');
+                    if (trace) trace.style.animationDuration = '2.5s';
+                    const lines = doctorRadarSvg?.querySelectorAll('.tablet-rx-line');
+                    lines?.forEach(l => l.style.stroke = '#38bdf8');
+                    const consoleText = doctorRadarSvg?.querySelector('text');
+                    if (consoleText) consoleText.style.fill = '#60a5fa';
+                    
+                    // Restore Admin default
+                    const monitorScreen = adminNetworkSvg?.querySelector('rect[fill="#090d16"]');
+                    if (monitorScreen) monitorScreen.style.fill = '#020617';
+                    const beds = adminNetworkSvg?.querySelectorAll('.bed-slot.vacant');
+                    beds?.forEach(b => b.style.fill = 'rgba(16, 185, 129, 0.15)');
+                    const fillBar = adminNetworkSvg?.querySelector('.occupancy-fill');
+                    if (fillBar) fillBar.style.fill = '#818cf8';
+                });
+            });
+
+            // --------------------- TECH STACK MODAL DIALOG ENGINE ---------------------
+            
+            const techBtn = document.getElementById('techBtn');
+            const techDialog = document.getElementById('tech-dialog');
+            
+            // Tab Buttons navigation
+            const tabButtons = document.querySelectorAll('.tech-nav-item');
+            const tabPanels = document.querySelectorAll('.tech-tab-panel');
+
+            // Interactive database schema map drawer
+            const schemaCanvas = document.getElementById('schemaCanvas');
+            let schemaCtx = null;
+            if (schemaCanvas) {
+                schemaCtx = schemaCanvas.getContext('2d');
+            }
+
+            const tables = [
+                { name: 'User', x: 25, y: 25, w: 100, h: 70, fields: ['id [PK]', 'email', 'first_name', 'phone'] },
+                { name: 'Patient', x: 180, y: 15, w: 110, h: 65, fields: ['id [PK]', 'user_id [FK]', 'blood_group'] },
+                { name: 'Doctor', x: 180, y: 110, w: 110, h: 70, fields: ['id [PK]', 'user_id [FK]', 'specialization'] },
+                { name: 'Appointment', x: 340, y: 60, w: 130, h: 80, fields: ['id [PK]', 'patient_id [FK]', 'doctor_id [FK]', 'status'] }
+            ];
+
+            function drawSchema() {
+                if (!schemaCanvas || !schemaCtx) return;
+                
+                const sW = schemaCanvas.width = schemaCanvas.offsetWidth;
+                const sH = schemaCanvas.height = schemaCanvas.offsetHeight;
+                
+                schemaCtx.clearRect(0, 0, sW, sH);
+                
+                // Draw cool dark grid background
+                schemaCtx.strokeStyle = 'rgba(56, 189, 248, 0.02)';
+                schemaCtx.lineWidth = 1;
+                for (let i = 0; i < sW; i += 15) {
+                    schemaCtx.beginPath(); schemaCtx.moveTo(i, 0); schemaCtx.lineTo(i, sH); schemaCtx.stroke();
+                }
+                for (let i = 0; i < sH; i += 15) {
+                    schemaCtx.beginPath(); schemaCtx.moveTo(0, i); schemaCtx.lineTo(sW, i); schemaCtx.stroke();
+                }
+                
+                // Draw connecting logic maps
+                schemaCtx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
+                schemaCtx.lineWidth = 1.5;
+                schemaCtx.shadowBlur = 5;
+                schemaCtx.shadowColor = '#38bdf8';
+                
+                // User -> Patient
+                schemaCtx.beginPath();
+                schemaCtx.moveTo(125, 45);
+                schemaCtx.lineTo(180, 45);
+                schemaCtx.stroke();
+                
+                // User -> Doctor
+                schemaCtx.beginPath();
+                schemaCtx.moveTo(75, 95);
+                schemaCtx.lineTo(75, 140);
+                schemaCtx.lineTo(180, 140);
+                schemaCtx.stroke();
+                
+                // Patient -> Appointment
+                schemaCtx.beginPath();
+                schemaCtx.moveTo(290, 48);
+                schemaCtx.lineTo(315, 48);
+                schemaCtx.lineTo(315, 88);
+                schemaCtx.lineTo(340, 88);
+                schemaCtx.stroke();
+                
+                // Doctor -> Appointment
+                schemaCtx.beginPath();
+                schemaCtx.moveTo(290, 140);
+                schemaCtx.lineTo(315, 140);
+                schemaCtx.lineTo(315, 112);
+                schemaCtx.lineTo(340, 112);
+                schemaCtx.stroke();
+                
+                // Draw table nodes
+                schemaCtx.shadowBlur = 0;
+                tables.forEach(table => {
+                    schemaCtx.fillStyle = 'rgba(30, 41, 59, 0.88)';
+                    schemaCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+                    schemaCtx.lineWidth = 1;
+                    
+                    schemaCtx.beginPath();
+                    schemaCtx.roundRect(table.x, table.y, table.w, table.h, 8);
+                    schemaCtx.fill();
+                    schemaCtx.stroke();
+                    
+                    // Table header capsule
+                    schemaCtx.fillStyle = 'rgba(56, 189, 248, 0.06)';
+                    schemaCtx.beginPath();
+                    schemaCtx.roundRect(table.x, table.y, table.w, 20, [8, 8, 0, 0]);
+                    schemaCtx.fill();
+                    
+                    // Table title text
+                    schemaCtx.fillStyle = '#f8fafc';
+                    schemaCtx.font = 'bold 9px monospace';
+                    schemaCtx.textAlign = 'left';
+                    schemaCtx.fillText(table.name, table.x + 8, table.y + 13);
+                    
+                    // Render database table field entries
+                    table.fields.forEach((field, fIdx) => {
+                        let color = '#94a3b8';
+                        if (field.includes('[PK]')) color = '#38bdf8';
+                        else if (field.includes('[FK]')) color = '#a5b4fc';
+                        
+                        schemaCtx.fillStyle = color;
+                        schemaCtx.font = '8px monospace';
+                        schemaCtx.fillText(field, table.x + 8, table.y + 32 + (fIdx * 10));
+                    });
+                });
+            }
+
+            // Invoker Commands Manual Fallback
+            const supportsInvokers = 'commandForElement' in HTMLButtonElement.prototype;
+            if (!supportsInvokers) {
+                document.addEventListener('click', (event) => {
+                    const button = event.target.closest('button[commandfor]');
+                    if (!button) return;
+
+                    const target = document.getElementById(button.getAttribute('commandfor'));
+                    const command = button.getAttribute('command');
+
+                    if (target && command) {
+                        if (command === 'show-modal') {
+                            target.showModal();
+                            if (target.id === 'tech-dialog') {
+                                setTimeout(drawSchema, 50);
+                            }
+                        } else if (command === 'close') {
+                            target.close();
+                        }
+                    }
+                });
+            } else if (techDialog && techBtn) {
+                // Native invoker trigger but listener to draw schema when opened
+                techBtn.addEventListener('click', () => {
+                    techDialog.showModal();
+                    setTimeout(drawSchema, 50);
+                });
+            }
+
+            // Window resize drawing listener
+            window.addEventListener('resize', () => {
+                if (techDialog && techDialog.open) {
+                    drawSchema();
+                }
+            });
+
+            // Modal Tech tab navigation clicks
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // Toggle active button
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Toggle active panel
+                    tabPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                        if (panel.id === `tab-${tabId}`) {
+                            panel.classList.add('active');
+                        }
+                    });
+
+                    // If database tab is active, draw schema map
+                    if (tabId === 'database') {
+                        setTimeout(drawSchema, 80);
+                    }
+                });
+            });
+
+            // E. Code Copying Logic
+            const copyButtons = document.querySelectorAll('.copy-code-btn');
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const codeId = btn.getAttribute('data-code');
+                    const codeEl = document.getElementById(codeId);
+                    if (codeEl) {
+                        navigator.clipboard.writeText(codeEl.textContent).then(() => {
+                            const originalHTML = btn.innerHTML;
+                            btn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Copied!';
+                            btn.style.color = '#10b981';
+                            setTimeout(() => {
+                                btn.innerHTML = originalHTML;
+                                btn.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('perimeters copy failed', err);
+                        });
+                    }
+                });
+            });
+
         });
     </script>
 </body>

@@ -99,6 +99,17 @@ def create_admin():
             if admin_role not in admin_user.roles:
                 admin_user.roles.append(admin_role)
                 print(f"  ✓ Added Admin role to existing user")
+            
+            # Ensure Admin profile exists
+            admin_profile = Admin.query.filter_by(user_id=admin_user.id).first()
+            if not admin_profile:
+                admin_profile = Admin(
+                    user_id=admin_user.id,
+                    is_super_admin=True,
+                    last_login=datetime.utcnow()
+                )
+                db.session.add(admin_profile)
+                print(f"  ✓ Created missing admin profile for existing user")
         
         db.session.commit()
         print("Admin user created!")
